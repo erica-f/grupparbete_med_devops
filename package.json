@@ -1,0 +1,37 @@
+{
+  "name": "kunskapskontroll-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+  "test": "vitest run --coverage && npm run test:e2e",
+  "test:e2e": "vite build && npx playwright test",
+  "lint": "eslint src/",
+  "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erica-f/grupparbete_med_devops.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/erica-f/grupparbete_med_devops/issues"
+  },
+  "homepage": "https://github.com/erica-f/grupparbete_med_devops#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.59.0",
+    "@vitest/coverage-v8": "^4.1.2",
+    "eslint": "^10.1.0",
+    "globals": "^17.4.0",
+    "jsdom": "^29.0.1",
+    "vite": "^8.0.3",
+    "vitest": "^4.1.2"
+  }
+}
