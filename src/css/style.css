@@ -318,20 +318,36 @@ p {
 }
 
 /* Sekundär – grön pill */
-.btn--secondary {
+/* .btn--secondary {
   background-color: transparent;
   color: var(--color-green);
   border: 1.5px solid var(--color-green-muted);
   padding: var(--space-2) var(--space-4);
   font-size: var(--text-sm);
+} */
+
+.btn--secondary {
+  background-color: transparent;
+  color: var(--color-green);
+  border: none;
+  padding: 0;
+  font-size: var(--text-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
 }
 
 .btn--secondary:hover {
-  background-color: var(--color-green-muted);
+  /* background-color: var(--color-green-muted); */
+  opacity: 0.65;
 }
 
 /* Tillbaka-knapp */
-.btn-back {
+/* .btn-back {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -343,11 +359,11 @@ p {
   color: var(--color-text-primary);
   transition: opacity var(--transition-fast);
   padding: 0;
-}
+} */
 
-.btn-back:hover {
+/* .btn-back:hover {
   opacity: 0.65;
-}
+} */
 
 
 /* ------------------------------------------------------------
@@ -464,45 +480,6 @@ p {
 
 
 /* ------------------------------------------------------------
-   9. Progressbar
-   ------------------------------------------------------------ */
-.progress-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
-}
-
-.progress-label {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-}
-
-.progress-percent {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  white-space: nowrap;
-}
-
-.progress-bar {
-  width: 100%;
-  height: 6px;
-  background-color: var(--color-bg-card);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-  margin-top: var(--space-2);
-}
-
-.progress-bar__fill {
-  height: 100%;
-  background-color: var(--color-progress);
-  border-radius: var(--radius-full);
-  transition: width var(--transition-slow);
-}
-
-
-/* ------------------------------------------------------------
    10. Ikoner & Badge
    ------------------------------------------------------------ */
 .icon-circle {
@@ -590,78 +567,6 @@ p {
   transform: translateX(1.25rem);
 }
 
-
-/* ------------------------------------------------------------
-   12. Övningskort med checkbox (Training)
-   ------------------------------------------------------------ */
-.exercise-card {
-  background-color: var(--color-bg-card);
-  border-radius: var(--radius-xl);
-  padding: var(--space-5) var(--space-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  box-shadow: var(--shadow-card);
-}
-
-.exercise-card__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--space-4);
-}
-
-.exercise-card__done-btn {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-.exercise-card__checkbox {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  border: 2px solid var(--color-green-muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: border-color var(--transition-base), background-color var(--transition-base);
-}
-
-.exercise-card__checkbox--checked {
-  background-color: var(--color-green);
-  border-color: var(--color-green);
-}
-
-.rep-inputs {
-  display: flex;
-  gap: var(--space-2);
-}
-
-.rep-input {
-  width: 3.5rem;
-  height: 2.5rem;
-  background-color: var(--color-bg-input);
-  border: none;
-  border-radius: var(--radius-md);
-  font-size: var(--text-base);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-primary);
-  text-align: center;
-  cursor: pointer;
-  transition: background-color var(--transition-base);
-}
-
-.rep-input:hover {
-  background-color: var(--color-green-muted);
-}
 
 
 /* ------------------------------------------------------------
