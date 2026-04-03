@@ -55,10 +55,10 @@ export const getUserAchievements = async (userId) => {
 };
 
 // get data from person_best
-export const getUserBest = async (userId) => {
+export const getPersonalBest = async (userId) => {
   const userArray = await getDataFromSupabase({
     tableName: "person_best",
     filter: { col: "person_id", value: userId },
   });
-  return userArray[0];
+  return userArray;
 };
