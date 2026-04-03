@@ -1,17 +1,27 @@
 import { supabase } from "./supabaseClient.js";
 
-const getDataFromSupabase = async ({ tableName, filter, notStatement }) => {
-  const useFilter = filter ? filter : "";
+const getDataFromSupabase = async ({
+  tableName,
+  filter,
+  notStatement,
+  selectParams,
+}) => {
   console.log("get data in table:", tableName, ", using:", filter);
   try {
-    let query = supabase.from(tableName).select();
+    let query = supabase.from(tableName);
+    if (selectParams) {
+      query = query.select(selectParams);
+    } else {
+      query = query.select();
+    }
 
     if (filter) {
-      query = query.eq(useFilter.col, useFilter.value);
+      query = query.eq(filter.col, filter.value);
     }
     if (notStatement) {
       query = query.not(notStatement.col, "is", notStatement.value);
     }
+
     const { data, error } = await query;
 
     if (error) {
@@ -40,13 +50,17 @@ export const getUser = async (userId) => {
 
 // get data from exercises
 export const getExercises = async () => {
-  return await getDataFromSupabase({ tableName: "exercises" });
+  return await getDataFromSupabase({
+    tableName: "exercises",
+    selectParams: `id, name, description, with_kids, at_gym, equipment, bodyparts(bodypart)`,
+  });
 };
 
 export const getExampleExercises = async () => {
   return await getDataFromSupabase({
     tableName: "exercises",
     notStatement: { col: "img_src", value: null },
+    selectParams: `id, name, description, with_kids, at_gym, equipment, bodyparts(bodypart)`,
   });
 };
 
