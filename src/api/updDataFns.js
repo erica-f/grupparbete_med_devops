@@ -64,7 +64,7 @@ export const updPersonalBest = async (userId, exerciseId, repNo) => {
     updDataOnSupabase({
       tableName: "person_best",
       updParams: { rep_no: repNo },
-      double_filter: [
+      doubleFilter: [
         { col: "person_id", value: userId },
         { col: "exercise_id", value: exerciseId },
       ],
