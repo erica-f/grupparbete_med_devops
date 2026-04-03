@@ -1,17 +1,18 @@
-import { getUser } from "./getDataFns.js";
+import { createPersonalBest } from "./createDataFns.js";
+import { getPersonalBest, getUser } from "./getDataFns.js";
 import { supabase } from "./supabaseClient.js";
 
 const updDataOnSupabase = async ({
   tableName,
   updParams,
   filter,
-  double_filter,
+  doubleFilter,
 }) => {
   console.log(
     "update data in table:",
     tableName,
     ", with filter:",
-    filter || double_filter,
+    filter || doubleFilter,
     ", with params:",
     updParams,
   );
@@ -21,10 +22,10 @@ const updDataOnSupabase = async ({
     if (filter) {
       query = query.eq(filter.col, filter.value);
     }
-    if (double_filter) {
+    if (doubleFilter) {
       query = query
-        .eq(double_filter[0].col, double_filter[0].value)
-        .eq(double_filter[1].col, double_filter[1].value);
+        .eq(doubleFilter[0].col, doubleFilter[0].value)
+        .eq(doubleFilter[1].col, doubleFilter[1].value);
     }
     const { data, error } = await query;
 
@@ -51,13 +52,22 @@ export const updUserLvl = async (userId) => {
 };
 
 // update person_best
-export const updUserBest = async (userId, exercise_id) => {
-  updDataOnSupabase({
-    tableName: "person_best",
-    updParams: { rep_no: 2 },
-    double_filter: [
-      { col: "person_id", value: userId },
-      { col: "exercise_id", value: exercise_id },
-    ],
-  });
+export const updPersonalBest = async (userId, exerciseId, repNo) => {
+  const personalBestArray = await getPersonalBest(userId);
+  const exerciseBest = personalBestArray.filter(
+    (pb) => pb.exercise_id === exerciseId,
+  );
+  if (exerciseBest.length === 0) {
+    // a personalBest with that person and exercise doesnt exist
+    createPersonalBest(userId, exerciseId, repNo);
+  } else {
+    updDataOnSupabase({
+      tableName: "person_best",
+      updParams: { rep_no: repNo },
+      double_filter: [
+        { col: "person_id", value: userId },
+        { col: "exercise_id", value: exerciseId },
+      ],
+    });
+  }
 };
