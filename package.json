@@ -7,10 +7,11 @@
     "test": "test"
   },
   "scripts": {
-  "test": "vitest run --coverage && npm run test:e2e",
-  "test:e2e": "vite build && npx playwright test",
-  "lint": "eslint src/",
-  "preview": "vite preview"
+    "dev": "vite",
+    "test": "vitest run --coverage && npm run test:e2e",
+    "test:e2e": "vite build && npx playwright test",
+    "lint": "eslint src/",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -33,5 +34,8 @@
     "jsdom": "^29.0.1",
     "vite": "^8.0.3",
     "vitest": "^4.1.2"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.101.1"
   }
 }
