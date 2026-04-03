@@ -40,4 +40,17 @@ export const createPersonalBest = async (userId, exerciseId, repNo) => {
 };
 
 // create personal achievement
-// TODO:create achieved achievement
+export const createPersonAchievement = async (userId, achievementId) => {
+  const today = new Date().toISOString().split("T")[0];
+
+  const newAchievement = {
+    achievement_id: achievementId,
+    person_id: userId,
+    achieved_date: today,
+  };
+  console.log(newAchievement);
+  await createDataToSupabase({
+    tableName: "person_achievements",
+    dataObject: newAchievement,
+  });
+};
