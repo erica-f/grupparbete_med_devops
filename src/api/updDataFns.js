@@ -1,5 +1,9 @@
 import { createPersonalBest } from "./createDataFns.js";
-import { getPersonalBest, getUser } from "./getDataFns.js";
+import {
+  getPersonalBest,
+  getPersonalBestFromSpecificExercise,
+  getUser,
+} from "./getDataFns.js";
 import { supabase } from "./supabaseClient.js";
 
 const updDataOnSupabase = async ({
@@ -85,7 +89,20 @@ export const updPersonalBest = async (userId, exerciseId, repNo) => {
     });
   }
 };
-// TODO:update total reps
+
+export const updTotalReps = async (userId, exerciseId, repNo) => {
+  const personalBestSpecificExercise =
+    await getPersonalBestFromSpecificExercise(userId, exerciseId);
+
+  updDataOnSupabase({
+    tableName: "person_best",
+    updParams: { total_reps: personalBestSpecificExercise.total_reps + repNo },
+    doubleFilter: [
+      { col: "person_id", value: userId },
+      { col: "exercise_id", value: exerciseId },
+    ],
+  });
+};
 
 // update  person_achievements
 // TODO:update achievement date after reps update
