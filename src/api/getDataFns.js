@@ -1,6 +1,6 @@
 import { supabase } from "./supabaseClient.js";
 
-const getDataFromSupabase = async ({ tableName, filter }) => {
+const getDataFromSupabase = async ({ tableName, filter, notStatement }) => {
   const useFilter = filter ? filter : "";
   console.log("get data in table:", tableName, ", using:", filter);
   try {
@@ -8,6 +8,9 @@ const getDataFromSupabase = async ({ tableName, filter }) => {
 
     if (filter) {
       query = query.eq(useFilter.col, useFilter.value);
+    }
+    if (notStatement) {
+      query = query.not(notStatement.col, "is", notStatement.value);
     }
     const { data, error } = await query;
 
@@ -40,6 +43,13 @@ export const getExercises = async () => {
   return await getDataFromSupabase({ tableName: "exercises" });
 };
 
+export const getExampleExercises = async () => {
+  return await getDataFromSupabase({
+    tableName: "exercises",
+    notStatement: { col: "img_src", value: null },
+  });
+};
+
 // get data from achievements
 export const getAchievements = async () => {
   return await getDataFromSupabase({ tableName: "achievements" });
@@ -47,18 +57,16 @@ export const getAchievements = async () => {
 
 // get data from person_achievements
 export const getUserAchievements = async (userId) => {
-  const userArray = await getDataFromSupabase({
+  return await getDataFromSupabase({
     tableName: "person_achievements",
     filter: { col: "person_id", value: userId },
   });
-  return userArray[0];
 };
 
 // get data from person_best
 export const getPersonalBest = async (userId) => {
-  const userArray = await getDataFromSupabase({
+  return await getDataFromSupabase({
     tableName: "person_best",
     filter: { col: "person_id", value: userId },
   });
-  return userArray;
 };
