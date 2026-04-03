@@ -8,9 +8,11 @@
 /* ------------------------------------------------------------
    1. Custom Properties (Design Tokens)
    ------------------------------------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Quicksand:wght@300..700&display=swap');
+
 :root {
   /* Färger – Bakgrund */
-  --color-bg:            #f0f0eb;   /* Sidans bakgrund, varm off-white */
+  --color-bg:            #f8f8f7;   /* Sidans bakgrund, varm off-white */
   --color-bg-card:       #e8ede8;   /* Kort och paneler, ljusgrön-grå */
   --color-bg-card-hover: #dfe6df;   /* Kort hover-state */
   --color-bg-input:      #ffffff;   /* Inputfält och räknare */
@@ -30,7 +32,7 @@
   --color-progress:      #e8604a;   /* Progressbar */
 
   /* Färger – Text */
-  --color-text-primary:  #2d3a2e;   /* Rubriker, primär text */
+  --color-text-primary:  #2c3535;   /* Rubriker, primär text */
   --color-text-body:     #4a5e4a;   /* Brödtext */
   --color-text-muted:    #8a9e8a;   /* Sekundär text, metadata */
   --color-text-disabled: #b0bfb0;   /* Inaktivt innehåll */
@@ -41,8 +43,7 @@
   --color-brand:         #6b8f6e;   /* "FitParents" logotype */
 
   /* Typografi */
-  --font-sans: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
-  --font-display: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Quicksand', sans-serif;
 
   --text-xs:   0.75rem;    /* 12px – etiketter, badges */
   --text-sm:   0.875rem;   /* 14px – sekundär text, metadata */
@@ -155,7 +156,7 @@ ol {
    3. Typografi
    ------------------------------------------------------------ */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   color: var(--color-text-primary);
   line-height: var(--leading-tight);
   font-weight: var(--font-weight-bold);
@@ -488,7 +489,7 @@ p {
   justify-content: center;
   width: 3rem;
   height: 3rem;
-  border-radius: 50%;
+  border-radius: var(--radius-xl);
   background-color: var(--color-green-muted);
   color: var(--color-green);
   flex-shrink: 0;
@@ -565,69 +566,6 @@ p {
 
 .toggle input:checked + .toggle__slider::before {
   transform: translateX(1.25rem);
-}
-
-
-
-/* ------------------------------------------------------------
-   13. Achievement-kort
-   ------------------------------------------------------------ */
-.achievement-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-3);
-}
-
-.achievement-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-5) var(--space-4);
-  background-color: var(--color-bg-card);
-  border-radius: var(--radius-xl);
-  text-align: center;
-  box-shadow: var(--shadow-card);
-}
-
-.achievement-card--locked {
-  opacity: 0.5;
-}
-
-.achievement-card__name {
-  font-size: var(--text-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-primary);
-}
-
-/* Streak-banner */
-.streak-banner {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  background-color: var(--color-bg-card);
-  border-radius: var(--radius-xl);
-  padding: var(--space-5) var(--space-6);
-  box-shadow: var(--shadow-card);
-  margin-bottom: var(--space-6);
-}
-
-.streak-banner__label {
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-1);
-}
-
-.streak-banner__value {
-  font-size: var(--text-2xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-}
-
-.streak-banner__sub {
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-  margin-top: var(--space-1);
 }
 
 
