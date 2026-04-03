@@ -6,7 +6,12 @@ const getDataFromSupabase = async ({
   notStatement,
   selectParams,
 }) => {
-  console.log("get data in table:", tableName, ", using:", filter);
+  console.log(
+    "get data in table:",
+    tableName,
+    ", using:",
+    filter || selectParams,
+  );
   try {
     let query = supabase.from(tableName);
     if (selectParams) {
@@ -52,7 +57,7 @@ export const getUser = async (userId) => {
 export const getExercises = async () => {
   return await getDataFromSupabase({
     tableName: "exercises",
-    selectParams: `id, name, description, with_kids, at_gym, equipment, bodyparts(bodypart)`,
+    selectParams: `id, name, description, with_kids, at_gym,  exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
   });
 };
 
@@ -60,7 +65,7 @@ export const getExampleExercises = async () => {
   return await getDataFromSupabase({
     tableName: "exercises",
     notStatement: { col: "img_src", value: null },
-    selectParams: `id, name, description, with_kids, at_gym, equipment, bodyparts(bodypart)`,
+    selectParams: `id, name, description, with_kids, at_gym, exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
   });
 };
 
