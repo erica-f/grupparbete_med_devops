@@ -50,7 +50,20 @@ export const updUserLvl = async (userId) => {
     filter: { col: "id", value: userId },
   });
 };
-// TODO:update person streak after 3 workouts has been saved in LS
+
+export const updUserStreak = async (userId) => {
+  const workoutsThisWeek = 4; //get number from LS
+  if (workoutsThisWeek >= 3) {
+    const user = await getUser(userId);
+    updDataOnSupabase({
+      tableName: "persons",
+      updParams: { streak: user.streak + 1 },
+      filter: { col: "id", value: userId },
+    });
+  } else {
+    return;
+  }
+};
 
 // update person_best
 export const updPersonalBest = async (userId, exerciseId, repNo) => {
