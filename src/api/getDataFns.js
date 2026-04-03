@@ -11,6 +11,8 @@ const getDataFromSupabase = async ({
     tableName,
     ", using:",
     filter || selectParams,
+    "to show:",
+    selectParams,
   );
   try {
     let query = supabase.from(tableName);
@@ -79,6 +81,7 @@ export const getUserAchievements = async (userId) => {
   return await getDataFromSupabase({
     tableName: "person_achievements",
     filter: { col: "person_id", value: userId },
+    selectParams: ` persons(name), achievements(name, description, requirement_type, exercise_id,bronze, silver, gold)`,
   });
 };
 
@@ -87,5 +90,6 @@ export const getPersonalBest = async (userId) => {
   return await getDataFromSupabase({
     tableName: "person_best",
     filter: { col: "person_id", value: userId },
+    selectParams: `persons(name), exercises(name), rep_no, achieved_at`,
   });
 };
