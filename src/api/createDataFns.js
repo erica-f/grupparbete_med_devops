@@ -25,3 +25,16 @@ export const createUser = async (newUser) => {
   const newPerson = { lvl: 1, streak: 0, name: newUser };
   await createDataToSupabase({ tableName: "persons", dataObject: newPerson });
 };
+
+// create data to person_best
+export const createPersonalBest = async (userId, exerciseId, repNo) => {
+  const newPersonalBest = {
+    exercise_id: exerciseId,
+    person_id: userId,
+    rep_no: repNo,
+  };
+  await createDataToSupabase({
+    tableName: "person_best",
+    dataObject: newPersonalBest,
+  });
+};
