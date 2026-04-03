@@ -3,6 +3,7 @@ import { supabase } from "./supabaseClient.js";
 const getDataFromSupabase = async ({
   tableName,
   filter,
+  doubleFilter,
   notStatement,
   selectParams,
 }) => {
@@ -24,6 +25,11 @@ const getDataFromSupabase = async ({
 
     if (filter) {
       query = query.eq(filter.col, filter.value);
+    }
+    if (doubleFilter) {
+      query = query
+        .eq(doubleFilter[0].col, doubleFilter[0].value)
+        .eq(doubleFilter[1].col, doubleFilter[1].value);
     }
     if (notStatement) {
       query = query.not(notStatement.col, "is", notStatement.value);
@@ -96,4 +102,19 @@ export const getPersonalBest = async (userId) => {
     filter: { col: "person_id", value: userId },
     selectParams: `persons(name), exercises(name), rep_no, achieved_at`,
   });
+};
+
+export const getPersonalBestFromSpecificExercise = async (
+  userId,
+  exerciseId,
+) => {
+  const dataArray = await getDataFromSupabase({
+    tableName: "person_best",
+    doubleFilter: [
+      { col: "person_id", value: userId },
+      { col: "exercise_id", value: exerciseId },
+    ],
+    selectParams: `persons(name), exercises(name), rep_no, total_reps, achieved_at`,
+  });
+  return dataArray[0];
 };
