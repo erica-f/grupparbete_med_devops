@@ -12,7 +12,6 @@ const createDataToSupabase = async ({ tableName, dataObject }) => {
       throw error;
     }
 
-    console.log("returned data", data);
     return data;
   } catch (error) {
     console.error("Error fetching data:", error.message);
