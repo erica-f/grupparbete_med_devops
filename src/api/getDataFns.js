@@ -100,7 +100,7 @@ export const getPersonalBest = async (userId) => {
   return await getDataFromSupabase({
     tableName: "person_best",
     filter: { col: "person_id", value: userId },
-    selectParams: `persons(name), exercises(name), rep_no, achieved_at`,
+    selectParams: `person_id, exercise_id, persons(name), exercises(name), rep_no, achieved_at`,
   });
 };
 
