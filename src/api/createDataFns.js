@@ -48,7 +48,6 @@ export const createPersonAchievement = async (userId, achievementId) => {
     person_id: userId,
     achieved_date: today,
   };
-  console.log(newAchievement);
   await createDataToSupabase({
     tableName: "person_achievements",
     dataObject: newAchievement,
