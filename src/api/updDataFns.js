@@ -104,4 +104,15 @@ export const updTotalReps = async (userId, exerciseId, repNo) => {
 };
 
 // update  person_achievements
-// TODO:update achievement date after reps update
+export const updPersonAchievement = async (userId, achievementId) => {
+  const today = new Date().toISOString().split("T")[0];
+
+  await updDataOnSupabase({
+    tableName: "person_achievements",
+    updParams: { achieved_date: today },
+    doubleFilter: [
+      { col: "person_id", value: userId },
+      { col: "achievement_id", value: achievementId },
+    ],
+  });
+};
