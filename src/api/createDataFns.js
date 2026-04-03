@@ -32,9 +32,13 @@ export const createPersonalBest = async (userId, exerciseId, repNo) => {
     exercise_id: exerciseId,
     person_id: userId,
     rep_no: repNo,
+    total_reps: repNo,
   };
   await createDataToSupabase({
     tableName: "person_best",
     dataObject: newPersonalBest,
   });
 };
+
+// create personal achievement
+// TODO:create achieved achievement

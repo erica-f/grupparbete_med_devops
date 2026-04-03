@@ -50,6 +50,7 @@ export const updUserLvl = async (userId) => {
     filter: { col: "id", value: userId },
   });
 };
+// TODO:update person streak after 3 workouts has been saved in LS
 
 // update person_best
 export const updPersonalBest = async (userId, exerciseId, repNo) => {
@@ -71,3 +72,7 @@ export const updPersonalBest = async (userId, exerciseId, repNo) => {
     });
   }
 };
+// TODO:update total reps
+
+// update  person_achievements
+// TODO:update achievement date after reps update
