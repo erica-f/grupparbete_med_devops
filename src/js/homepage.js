@@ -1,20 +1,35 @@
 import { getUsers } from "../api/getDataFns.js";
 
-export const choosetrainingConditionsHTML = (u) => {
-  const saveChoices = () => {
-    const selectedTime = document.querySelector('input[name="time"]:checked');
-    const selectedPlace = document.querySelector(
-      'input[name="location"]:checked',
-    );
-    const selectedWKids = document.querySelector('input[name="kids"]:checked');
-    console.log(u.name, selectedTime?.id, selectedPlace?.id, selectedWKids?.id);
-    const radios = document.querySelectorAll('input[type="radio"]');
+const saveChoices = (u) => {
+  const selectedTime = document.querySelector('input[name="time"]:checked');
+  const selectedPlace = document.querySelector(
+    'input[name="location"]:checked',
+  );
+  const selectedWKids = document.querySelector('input[name="kids"]:checked');
+  console.log(u.name, selectedTime?.id, selectedPlace?.id, selectedWKids?.id);
+  const radios = document.querySelectorAll('input[type="radio"]');
 
-    radios.forEach((radio) => {
-      radio.checked = false;
-    });
-    window.location.href = "/training.html";
-  };
+  radios.forEach((radio) => {
+    radio.checked = false;
+  });
+  window.location.href = "/training.html";
+};
+
+const checkForm = () => {
+  const time = document.querySelector('input[name="time"]:checked');
+  const location = document.querySelector('input[name="location"]:checked');
+  const kids = document.querySelector('input[name="kids"]:checked');
+  const btn = document.getElementById("trainingBtn");
+  console.log(time, location, kids);
+
+  if (time && location && kids) {
+    btn.disabled = false;
+  } else {
+    btn.disabled = true;
+  }
+};
+
+export const choosetrainingConditionsHTML = (u) => {
   const homepageBody = document.getElementById("homepage");
   // page
   const page = document.createElement("div");
@@ -244,23 +259,11 @@ export const choosetrainingConditionsHTML = (u) => {
 
   // ---------------- CTA ----------------
   const btn = document.createElement("button");
+  btn.id = "trainingBtn";
   btn.className = "btn btn--primary";
   btn.innerText = "Skapa mitt pass ✨";
   btn.disabled = true;
-  btn.addEventListener("click", () => saveChoices());
-
-  function checkForm() {
-    const time = document.querySelector('input[name="time"]:checked');
-    const location = document.querySelector('input[name="location"]:checked');
-    const kids = document.querySelector('input[name="kids"]:checked');
-    console.log(time, location, kids);
-
-    if (time && location && kids) {
-      btn.disabled = false;
-    } else {
-      btn.disabled = true;
-    }
-  }
+  btn.addEventListener("click", () => saveChoices(u));
 
   document.querySelectorAll('input[type="radio"]').forEach((input) => {
     input.addEventListener("change", checkForm);
