@@ -349,13 +349,16 @@ export const chooseUserHTML = async () => {
   const newUserInput = document.createElement("input");
   newUserInput.type = "text";
   newUserInput.placeholder = "Skriv ditt namn...";
-  newUserInput.className = "card card--white"; // reuse styling
-
+  newUserInput.className = "card card--white";
+  newUserInput.addEventListener("input", () => {
+    newUserBtn.disabled = newUserInput.value.trim() === "";
+  });
   formCard.append(newUserInput);
 
   const newUserBtn = document.createElement("button");
   newUserBtn.className = "btn btn--primary";
   newUserBtn.innerText = "Skapa ny profil";
+  newUserBtn.disabled = true;
 
   formCard.append(newUserBtn);
 };
