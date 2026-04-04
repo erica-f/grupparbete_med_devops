@@ -1,3 +1,11 @@
+.salmon {
+  color: var(--color-accent);
+}
+
+.option-grid input:checked + .option-card .salmon {
+  color: var(--color-text-on-green);
+}
+
 .option-grid input:checked + .option-card {
   background-color: var(--color-green);
   color: var(--color-text-on-green);
