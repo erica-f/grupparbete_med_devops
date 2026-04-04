@@ -295,8 +295,9 @@ export const chooseUserHTML = async () => {
   headerWrap.style.textAlign = "center";
   container.append(headerWrap);
 
-  const title = document.createElement("h2");
-  title.innerText = "Vem ska träna?";
+  const title = document.createElement("div");
+  title.innerHTML =
+    "<h2>Välkommen till FitParent!</h2></br><h3>Vem ska träna?</h3>";
   headerWrap.append(title);
 
   // ---------------- USER LIST ----------------
