@@ -1,4 +1,3 @@
-import { supabase } from "../api/supabaseClient.js";
 import { getAchievements } from "../api/getDataFns.js"
 
 function consoleLogAchievements() {
