@@ -7,7 +7,7 @@ export const choosetrainingConditionsHTML = (u) => {
       'input[name="location"]:checked',
     );
     const selectedWKids = document.querySelector('input[name="kids"]:checked');
-    console.log(u.name, selectedTime.id, selectedPlace.id, selectedWKids.id);
+    console.log(u.name, selectedTime?.id, selectedPlace?.id, selectedWKids?.id);
     const radios = document.querySelectorAll('input[type="radio"]');
 
     radios.forEach((radio) => {
@@ -79,7 +79,6 @@ export const choosetrainingConditionsHTML = (u) => {
   t20.type = "radio";
   t20.name = "time";
   t20.id = "t20";
-  t20.checked = true;
   t20.className = "visually-hidden";
   grid1.append(t20);
 
@@ -122,7 +121,6 @@ export const choosetrainingConditionsHTML = (u) => {
   homeInput.type = "radio";
   homeInput.name = "location";
   homeInput.id = "home";
-  homeInput.checked = true;
   homeInput.className = "visually-hidden";
   grid2.append(homeInput);
 
@@ -220,7 +218,6 @@ export const choosetrainingConditionsHTML = (u) => {
   kidsNoInput.name = "kids";
   kidsNoInput.id = "kids-no";
   kidsNoInput.value = "no";
-  kidsNoInput.checked = true;
   kidsNoInput.className = "visually-hidden";
   grid3.append(kidsNoInput);
 
@@ -248,7 +245,26 @@ export const choosetrainingConditionsHTML = (u) => {
   const btn = document.createElement("button");
   btn.className = "btn btn--primary";
   btn.innerText = "Skapa mitt pass ✨";
+  btn.disabled = true;
   btn.addEventListener("click", () => saveChoices());
+
+  function checkForm() {
+    const time = document.querySelector('input[name="time"]:checked');
+    const location = document.querySelector('input[name="location"]:checked');
+    const kids = document.querySelector('input[name="kids"]:checked');
+    console.log(time, location, kids);
+
+    if (time && location && kids) {
+      btn.disabled = false;
+    } else {
+      btn.disabled = true;
+    }
+  }
+
+  document.querySelectorAll('input[type="radio"]').forEach((input) => {
+    input.addEventListener("change", checkForm);
+  });
+
   container.append(btn);
 };
 
