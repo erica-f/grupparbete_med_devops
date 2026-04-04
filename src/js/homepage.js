@@ -13,6 +13,7 @@ export const choosetrainingConditionsHTML = (u) => {
     radios.forEach((radio) => {
       radio.checked = false;
     });
+    window.location.href = "/training.html";
   };
   const homepageBody = document.getElementById("homepage");
   // page
