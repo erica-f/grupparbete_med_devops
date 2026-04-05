@@ -12,7 +12,13 @@ const saveChoices = (u) => {
     'input[name="location"]:checked',
   );
   const selectedWKids = document.querySelector('input[name="kids"]:checked');
-  console.log(u.name, selectedTime?.id, selectedPlace?.id, selectedWKids?.id);
+  console.log(
+    "should save theese to LS",
+    u.name,
+    selectedTime?.id,
+    selectedPlace?.id,
+    selectedWKids?.id,
+  );
   const radios = document.querySelectorAll('input[type="radio"]');
 
   radios.forEach((radio) => {
@@ -26,7 +32,6 @@ const checkForm = () => {
   const location = document.querySelector('input[name="location"]:checked');
   const kids = document.querySelector('input[name="kids"]:checked');
   const btn = document.getElementById("trainingBtn");
-  console.log(time, location, kids);
 
   if (time && location && kids) {
     btn.disabled = false;
@@ -280,7 +285,6 @@ export const choosetrainingConditionsHTML = (u) => {
 
 export const chooseUserHTML = async () => {
   const saveUserToLS = (u) => {
-    localStorage.setItem("fitParentUser", u.name);
     homepageBody.innerHTML = "";
     choosetrainingConditionsHTML(u);
   };
