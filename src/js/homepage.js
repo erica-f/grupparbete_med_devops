@@ -1,4 +1,10 @@
 import { getUsers } from "../api/getDataFns.js";
+const greenVariable = getComputedStyle(
+  document.documentElement,
+).getPropertyValue("--color-green");
+const salmonVariable = getComputedStyle(
+  document.documentElement,
+).getPropertyValue("--color-accent");
 
 const saveChoices = (u) => {
   const selectedTime = document.querySelector('input[name="time"]:checked');
@@ -69,7 +75,7 @@ export const choosetrainingConditionsHTML = (u) => {
 
   const label1 = document.createElement("div");
   label1.className = "section-label";
-  label1.innerText = "⏱ Hur länge kan du träna?";
+  label1.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke=${greenVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock text-primary"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Hur länge kan du träna?`;
   section1.append(label1);
 
   const grid1 = document.createElement("div");
@@ -125,7 +131,7 @@ export const choosetrainingConditionsHTML = (u) => {
 
   const label2 = document.createElement("div");
   label2.className = "section-label";
-  label2.innerText = "🏠 Var vill du träna?";
+  label2.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke=${greenVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house text-primary"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg> Var vill du träna?`;
   section2.append(label2);
 
   const grid2 = document.createElement("div");
@@ -192,7 +198,7 @@ export const choosetrainingConditionsHTML = (u) => {
 
   const label3 = document.createElement("div");
   label3.className = "section-label";
-  label3.innerText = "👶 Har du barn med dig?";
+  label3.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke=${salmonVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-baby text-secondary"><path d="M9 12h.01"></path><path d="M15 12h.01"></path><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"></path><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"></path></svg> Har du barn med dig?`;
   section3.append(label3);
 
   const grid3 = document.createElement("div");
