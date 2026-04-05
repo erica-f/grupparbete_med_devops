@@ -320,7 +320,6 @@ export const chooseUserHTML = async () => {
   userGrid.className = "option-grid";
   section.append(userGrid);
 
-  // FETCH USERS
   const users = await getUsers();
 
   users.map((u) => {
