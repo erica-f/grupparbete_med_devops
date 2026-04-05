@@ -78,6 +78,18 @@ export const choosetrainingConditionsHTML = (u) => {
   brand.innerText = "FitParents";
   header.append(brand);
 
+  const backBtn = document.createElement("div");
+  backBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left back-btn">
+                        <path d="m12 19-7-7 7-7"></path>
+                        <path d="M19 12H5"></path>
+                    </svg>`;
+  backBtn.className = "btn--secondary";
+  backBtn.addEventListener("click", () => {
+    homepageBody.innerHTML = "";
+    chooseUserHTML();
+  });
+  header.append(backBtn);
+
   const title = document.createElement("div");
   title.innerHTML = `<h2>Hej, ${u.name}!</h2></br> <h3>Vilka är dina preferenser för träning idag?</h3>`;
   header.append(title);
