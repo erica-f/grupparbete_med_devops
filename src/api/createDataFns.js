@@ -22,7 +22,10 @@ const createDataToSupabase = async ({ tableName, dataObject }) => {
 // create data to persons
 export const createUser = async (newUser) => {
   const newPerson = { lvl: 1, streak: 0, name: newUser };
-  await createDataToSupabase({ tableName: "persons", dataObject: newPerson });
+  return await createDataToSupabase({
+    tableName: "persons",
+    dataObject: newPerson,
+  });
 };
 
 // create data to person_best
