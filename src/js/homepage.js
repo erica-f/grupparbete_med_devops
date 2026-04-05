@@ -369,6 +369,10 @@ export const choosetrainingConditionsHTML = (u) => {
 
 export const chooseUserHTML = async () => {
   const saveUserToLS = (u) => {
+    localStorage.setItem(
+      "fitParent",
+      JSON.stringify({ is_active: true, user: u }),
+    );
     homepageBody.innerHTML = "";
     choosetrainingConditionsHTML(u);
   };
