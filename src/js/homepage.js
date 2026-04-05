@@ -13,13 +13,17 @@ const saveChoices = (u) => {
   const selectedPlace = document.querySelector(
     'input[name="location"]:checked',
   );
-  const selectedWKids = document.querySelector('input[name="kids"]:checked');
+  const selectedEquipment = document.querySelector(
+    'input[name="equipment"]:checked',
+  );
+  const selectedKids = document.querySelector('input[name="kids"]:checked');
   console.log(
     "should save theese to LS",
-    u.name,
+    u.id,
     selectedTime?.id,
     selectedPlace?.id,
-    selectedWKids?.id,
+    selectedEquipment?.id,
+    selectedKids?.id,
   );
   const radios = document.querySelectorAll('input[type="radio"]');
 
@@ -32,10 +36,11 @@ const saveChoices = (u) => {
 const checkForm = () => {
   const time = document.querySelector('input[name="time"]:checked');
   const location = document.querySelector('input[name="location"]:checked');
+  const equipment = document.querySelector('input[name="equipment"]:checked');
   const kids = document.querySelector('input[name="kids"]:checked');
   const btn = document.getElementById("trainingBtn");
 
-  if (time && location && kids) {
+  if (time && location && equipment && kids) {
     btn.disabled = false;
   } else {
     btn.disabled = true;
@@ -99,7 +104,7 @@ export const choosetrainingConditionsHTML = (u) => {
 
   const l10 = document.createElement("label");
   l10.htmlFor = "t10";
-  l10.className = "option-card";
+  l10.className = "option-card option-card__label";
   l10.innerText = "10 min";
   grid1.append(l10);
 
@@ -113,7 +118,7 @@ export const choosetrainingConditionsHTML = (u) => {
 
   const l20 = document.createElement("label");
   l20.htmlFor = "t20";
-  l20.className = "option-card";
+  l20.className = "option-card option-card__label";
   l20.innerText = "20 min";
   grid1.append(l20);
 
@@ -127,7 +132,7 @@ export const choosetrainingConditionsHTML = (u) => {
 
   const l30 = document.createElement("label");
   l30.htmlFor = "t30";
-  l30.className = "option-card";
+  l30.className = "option-card option-card__label";
   l30.innerText = "30 min";
   grid1.append(l30);
 
@@ -159,7 +164,7 @@ export const choosetrainingConditionsHTML = (u) => {
   grid2.append(homeLabel);
 
   const homeIcon = document.createElement("div");
-  homeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house text-primary-foreground"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>`;
+  homeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke=${greenCSSVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house text-primary-foreground"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>`;
   homeLabel.append(homeIcon);
 
   const homeTitle = document.createElement("div");
@@ -186,7 +191,7 @@ export const choosetrainingConditionsHTML = (u) => {
   grid2.append(gymLabel);
 
   const gymIcon = document.createElement("div");
-  gymIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dumbbell text-primary"><path d="M14.4 14.4 9.6 9.6"></path><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"></path><path d="m21.5 21.5-1.4-1.4"></path><path d="M3.9 3.9 2.5 2.5"></path><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"></path></svg>`;
+  gymIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke=${greenCSSVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-warehouse-icon lucide-warehouse"><path d="M18 21V10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v11"/><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 1.132-1.803l7.95-3.974a2 2 0 0 1 1.837 0l7.948 3.974A2 2 0 0 1 22 8z"/><path d="M6 13h12"/><path d="M6 17h12"/></svg>`;
   gymLabel.append(gymIcon);
 
   const gymTitle = document.createElement("div");
@@ -198,19 +203,88 @@ export const choosetrainingConditionsHTML = (u) => {
   gymSub.className = "option-card__sublabel";
   gymSub.innerText = "Med full utrustning";
   gymLabel.append(gymSub);
-  // ---------------- KIDS ----------------
+
+  // ---------------- EQUIPMENT ----------------
   const section3 = document.createElement("div");
   section3.className = "section";
   container.append(section3);
 
   const label3 = document.createElement("div");
   label3.className = "section-label";
-  label3.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke=${salmonCSSVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-baby text-secondary"><path d="M9 12h.01"></path><path d="M15 12h.01"></path><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"></path><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"></path></svg> Har du barn med dig?`;
+  label3.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke=${greenCSSVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dumbbell text-primary"><path d="M14.4 14.4 9.6 9.6"></path><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"></path><path d="m21.5 21.5-1.4-1.4"></path><path d="M3.9 3.9 2.5 2.5"></path><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"></path></svg> Ska redskap användas?`;
   section3.append(label3);
 
   const grid3 = document.createElement("div");
   grid3.className = "option-grid";
   section3.append(grid3);
+
+  // WITH EQUIPMENT
+  const equipmentInput = document.createElement("input");
+  equipmentInput.type = "radio";
+  equipmentInput.name = "equipment";
+  equipmentInput.id = "with-equipment";
+  equipmentInput.className = "visually-hidden";
+  grid3.append(equipmentInput);
+
+  const equipmentLabel = document.createElement("label");
+  equipmentLabel.htmlFor = "equipment";
+  equipmentLabel.className = "option-card";
+  grid3.append(equipmentLabel);
+
+  const equipmentIcon = document.createElement("div");
+  equipmentIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke=${greenCSSVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dumbbell text-primary"><path d="M14.4 14.4 9.6 9.6"></path><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"></path><path d="m21.5 21.5-1.4-1.4"></path><path d="M3.9 3.9 2.5 2.5"></path><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"></path></svg>`;
+  equipmentLabel.append(equipmentIcon);
+
+  const equipmentTitle = document.createElement("div");
+  equipmentTitle.className = "option-card__label";
+  equipmentTitle.innerText = "Ja";
+  equipmentLabel.append(equipmentTitle);
+
+  const equipmentSub = document.createElement("div");
+  equipmentSub.className = "option-card__sublabel";
+  equipmentSub.innerText = "Använd vikter & redskap";
+  equipmentLabel.append(equipmentSub);
+
+  // NO EQUIPMENT
+  const noEquipmentInput = document.createElement("input");
+  noEquipmentInput.type = "radio";
+  noEquipmentInput.name = "equipment";
+  noEquipmentInput.id = "no-equipment";
+  noEquipmentInput.className = "visually-hidden";
+  grid3.append(noEquipmentInput);
+
+  const noEquipmentLabel = document.createElement("label");
+  noEquipmentLabel.htmlFor = "equipment";
+  noEquipmentLabel.className = "option-card";
+  grid3.append(noEquipmentLabel);
+
+  const noEquipmentIcon = document.createElement("div");
+  noEquipmentIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke=${greenCSSVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-person-standing-icon lucide-person-standing"><circle cx="12" cy="5" r="1"/><path d="m9 20 3-6 3 6"/><path d="m6 8 6 2 6-2"/><path d="M12 10v4"/></svg>`;
+  noEquipmentLabel.append(noEquipmentIcon);
+
+  const noEquipmentTitle = document.createElement("div");
+  noEquipmentTitle.className = "option-card__label";
+  noEquipmentTitle.innerText = "Nej";
+  noEquipmentLabel.append(noEquipmentTitle);
+
+  const noEquipmentSub = document.createElement("div");
+  noEquipmentSub.className = "option-card__sublabel";
+  noEquipmentSub.innerText = "Endast kroppsvikt";
+  noEquipmentLabel.append(noEquipmentSub);
+
+  // ---------------- KIDS ----------------
+  const section4 = document.createElement("div");
+  section4.className = "section";
+  container.append(section4);
+
+  const label4 = document.createElement("div");
+  label4.className = "section-label";
+  label4.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke=${salmonCSSVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-baby text-secondary"><path d="M9 12h.01"></path><path d="M15 12h.01"></path><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"></path><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"></path></svg> Har du barn med dig?`;
+  section4.append(label4);
+
+  const grid4 = document.createElement("div");
+  grid4.className = "option-grid";
+  section4.append(grid4);
 
   // YES (kids)
   const kidsYesInput = document.createElement("input");
@@ -219,16 +293,16 @@ export const choosetrainingConditionsHTML = (u) => {
   kidsYesInput.id = "kids-yes";
   kidsYesInput.value = "yes";
   kidsYesInput.className = "visually-hidden";
-  grid3.append(kidsYesInput);
+  grid4.append(kidsYesInput);
 
   const kidsYesLabel = document.createElement("label");
   kidsYesLabel.htmlFor = "kids-yes";
   kidsYesLabel.className = "option-card";
-  grid3.append(kidsYesLabel);
+  grid4.append(kidsYesLabel);
 
   const kidsYesIcon = document.createElement("div");
   kidsYesIcon.className = "salmon";
-  kidsYesIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-baby text-secondary"><path d="M9 12h.01"></path><path d="M15 12h.01"></path><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"></path><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"></path></svg>`;
+  kidsYesIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke=${salmonCSSVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-baby text-secondary"><path d="M9 12h.01"></path><path d="M15 12h.01"></path><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"></path><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"></path></svg>`;
   kidsYesLabel.append(kidsYesIcon);
 
   const kidsYesTitle = document.createElement("div");
@@ -248,16 +322,16 @@ export const choosetrainingConditionsHTML = (u) => {
   kidsNoInput.id = "kids-no";
   kidsNoInput.value = "no";
   kidsNoInput.className = "visually-hidden";
-  grid3.append(kidsNoInput);
+  grid4.append(kidsNoInput);
 
   const kidsNoLabel = document.createElement("label");
   kidsNoLabel.htmlFor = "kids-no";
   kidsNoLabel.className = "option-card";
-  grid3.append(kidsNoLabel);
+  grid4.append(kidsNoLabel);
 
   const kidsNoIcon = document.createElement("div");
   kidsNoIcon.className = "salmon";
-  kidsNoIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-primary-foreground"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`;
+  kidsNoIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke=${salmonCSSVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-primary-foreground"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`;
   kidsNoLabel.append(kidsNoIcon);
 
   const kidsNoTitle = document.createElement("div");
