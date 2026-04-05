@@ -1,4 +1,6 @@
 import { getUsers } from "../api/getDataFns.js";
+import { createUser } from "../api/createDataFns.js";
+
 const greenCSSVariable = getComputedStyle(
   document.documentElement,
 ).getPropertyValue("--color-green");
@@ -373,6 +375,10 @@ export const chooseUserHTML = async () => {
   newUserBtn.className = "btn btn--primary";
   newUserBtn.innerText = "Skapa ny profil";
   newUserBtn.disabled = true;
+  newUserBtn.addEventListener("click", async () => {
+    const newUserArray = await createUser(newUserInput.value);
+    saveUserToLS(newUserArray[0]);
+  });
 
   formCard.append(newUserBtn);
 };
