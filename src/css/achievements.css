@@ -72,7 +72,7 @@
   stroke: #6d7878;
 }
 .green {
-  stroke: #7a9e7e;
+  stroke: var(--color-green);
 }
 .bronze {
   stroke: #cd7f32; filter: drop-shadow(0 0 5px #cd7f32)
