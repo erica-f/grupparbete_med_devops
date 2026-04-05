@@ -392,7 +392,7 @@ export const chooseUserHTML = async () => {
 
   // PAGE
   const page = document.createElement("div");
-  page.className = "page";
+  page.className = "page userpage";
   homepageBody.append(page);
 
   const container = document.createElement("div");

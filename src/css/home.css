@@ -1,3 +1,9 @@
+.userpage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .back-btn {
   display: flex;
   align-self: start;
