@@ -10,93 +10,94 @@
    ------------------------------------------------------------ */
 :root {
   /* Färger – Bakgrund */
-  --color-bg:            #f0f0eb;   /* Sidans bakgrund, varm off-white */
-  --color-bg-card:       #e8ede8;   /* Kort och paneler, ljusgrön-grå */
-  --color-bg-card-hover: #dfe6df;   /* Kort hover-state */
-  --color-bg-input:      #ffffff;   /* Inputfält och räknare */
+  --color-bg: #f0f0eb; /* Sidans bakgrund, varm off-white */
+  --color-bg-card: #e8ede8; /* Kort och paneler, ljusgrön-grå */
+  --color-bg-card-hover: #dfe6df; /* Kort hover-state */
+  --color-bg-input: #ffffff; /* Inputfält och räknare */
 
   /* Färger – Gröna (primär) */
-  --color-green-light:   #a8c5a8;   /* Ikoner, subtila accenter */
-  --color-green:         #7a9e7e;   /* Primär grön, aktiva tabbar, knappar */
-  --color-green-dark:    #4a6b4e;   /* Hover på primärfärg */
-  --color-green-muted:   #c5d9c5;   /* Disabled-states, inaktiva badges */
+  --color-green-light: #a8c5a8; /* Ikoner, subtila accenter */
+  --color-green: #7a9e7e; /* Primär grön, aktiva tabbar, knappar */
+  --color-green-dark: #4a6b4e; /* Hover på primärfärg */
+  --color-green-muted: #c5d9c5; /* Disabled-states, inaktiva badges */
 
   /* Färger – Salmon/Orange (sekundär accent) */
-  --color-accent:        #f08468;   /* CTA-knappar, "Skapa mitt pass" */
-  --color-accent-hover:  #e06e50;   /* Hover på CTA */
-  --color-accent-light:  #fad4c8;   /* Mjuk bakgrund för accent-element */
+  --color-accent: #f08468; /* CTA-knappar, "Skapa mitt pass" */
+  --color-accent-hover: #e06e50; /* Hover på CTA */
+  --color-accent-light: #fad4c8; /* Mjuk bakgrund för accent-element */
 
   /* Färger – Progress/Varning */
-  --color-progress:      #e8604a;   /* Progressbar */
+  --color-progress: #e8604a; /* Progressbar */
 
   /* Färger – Text */
-  --color-text-primary:  #2d3a2e;   /* Rubriker, primär text */
-  --color-text-body:     #4a5e4a;   /* Brödtext */
-  --color-text-muted:    #8a9e8a;   /* Sekundär text, metadata */
-  --color-text-disabled: #b0bfb0;   /* Inaktivt innehåll */
-  --color-text-on-green: #ffffff;   /* Text på grön bakgrund */
-  --color-text-on-accent:#ffffff;   /* Text på salmon-bakgrund */
+  --color-text-primary: #2d3a2e; /* Rubriker, primär text */
+  --color-text-body: #4a5e4a; /* Brödtext */
+  --color-text-muted: #8a9e8a; /* Sekundär text, metadata */
+  --color-text-disabled: #b0bfb0; /* Inaktivt innehåll */
+  --color-text-on-green: #ffffff; /* Text på grön bakgrund */
+  --color-text-on-accent: #ffffff; /* Text på salmon-bakgrund */
 
   /* Färger – Logotyp */
-  --color-brand:         #6b8f6e;   /* "FitParents" logotype */
+  --color-brand: #6b8f6e; /* "FitParents" logotype */
 
   /* Typografi */
-  --font-sans: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
-  --font-display: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "DM Sans", "Helvetica Neue", Arial, sans-serif;
 
-  --text-xs:   0.75rem;    /* 12px – etiketter, badges */
-  --text-sm:   0.875rem;   /* 14px – sekundär text, metadata */
-  --text-base: 1rem;       /* 16px – brödtext */
-  --text-lg:   1.125rem;   /* 18px – större brödtext */
-  --text-xl:   1.25rem;    /* 20px – kortrubriker */
-  --text-2xl:  1.5rem;     /* 24px – sektionsrubriker */
-  --text-3xl:  1.875rem;   /* 30px – sidrubriker */
-  --text-4xl:  2.25rem;    /* 36px – hero-rubriker */
+  --text-xs: 0.75rem; /* 12px – etiketter, badges */
+  --text-sm: 0.875rem; /* 14px – sekundär text, metadata */
+  --text-base: 1rem; /* 16px – brödtext */
+  --text-lg: 1.125rem; /* 18px – större brödtext */
+  --text-xl: 1.25rem; /* 20px – kortrubriker */
+  --text-2xl: 1.5rem; /* 24px – sektionsrubriker */
+  --text-3xl: 1.875rem; /* 30px – sidrubriker */
+  --text-4xl: 2.25rem; /* 36px – hero-rubriker */
 
-  --font-weight-normal:   400;
-  --font-weight-medium:   500;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
   --font-weight-semibold: 600;
-  --font-weight-bold:     700;
+  --font-weight-bold: 700;
 
-  --leading-tight:  1.2;
-  --leading-snug:   1.35;
+  --leading-tight: 1.2;
+  --leading-snug: 1.35;
   --leading-normal: 1.5;
-  --leading-relaxed:1.65;
+  --leading-relaxed: 1.65;
 
   /* Spacing */
-  --space-1:  0.25rem;   /*  4px */
-  --space-2:  0.5rem;    /*  8px */
-  --space-3:  0.75rem;   /* 12px */
-  --space-4:  1rem;      /* 16px */
-  --space-5:  1.25rem;   /* 20px */
-  --space-6:  1.5rem;    /* 24px */
-  --space-8:  2rem;      /* 32px */
-  --space-10: 2.5rem;    /* 40px */
-  --space-12: 3rem;      /* 48px */
-  --space-16: 4rem;      /* 64px */
+  --space-1: 0.25rem; /*  4px */
+  --space-2: 0.5rem; /*  8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
 
   /* Border Radius */
-  --radius-sm:   0.5rem;    /*  8px – inputs, chips */
-  --radius-md:   0.875rem;  /* 14px – knappar */
-  --radius-lg:   1rem;      /* 16px – kort */
-  --radius-xl:   1.25rem;   /* 20px – stora kort */
-  --radius-full: 9999px;    /* Pill-form – tabbar, badges, CTA */
+  --radius-sm: 0.5rem; /*  8px – inputs, chips */
+  --radius-md: 0.875rem; /* 14px – knappar */
+  --radius-lg: 1rem; /* 16px – kort */
+  --radius-xl: 1.25rem; /* 20px – stora kort */
+  --radius-full: 9999px; /* Pill-form – tabbar, badges, CTA */
 
   /* Skuggor */
-  --shadow-card: 0 1px 3px rgba(45, 58, 46, 0.06), 0 1px 2px rgba(45, 58, 46, 0.04);
-  --shadow-card-hover: 0 4px 12px rgba(45, 58, 46, 0.10), 0 2px 4px rgba(45, 58, 46, 0.06);
-  --shadow-btn:  0 2px 8px rgba(240, 132, 104, 0.30);
+  --shadow-card:
+    0 1px 3px rgba(45, 58, 46, 0.06), 0 1px 2px rgba(45, 58, 46, 0.04);
+  --shadow-card-hover:
+    0 4px 12px rgba(45, 58, 46, 0.1), 0 2px 4px rgba(45, 58, 46, 0.06);
+  --shadow-btn: 0 2px 8px rgba(240, 132, 104, 0.3);
 
   /* Övergångar */
-  --transition-fast:   150ms ease;
-  --transition-base:   200ms ease;
-  --transition-slow:   300ms ease;
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
 
   /* Layout */
-  --content-max-width: 640px;  /* Mobilfokuserad centrad layout */
-  --page-padding-x:    var(--space-6);
+  --content-max-width: 640px; /* Mobilfokuserad centrad layout */
+  --page-padding-x: var(--space-6);
 }
-
 
 /* ------------------------------------------------------------
    2. Reset & Base
@@ -150,21 +151,34 @@ ol {
   list-style: none;
 }
 
-
 /* ------------------------------------------------------------
    3. Typografi
    ------------------------------------------------------------ */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   color: var(--color-text-primary);
   line-height: var(--leading-tight);
   font-weight: var(--font-weight-bold);
 }
 
-h1 { font-size: var(--text-4xl); }
-h2 { font-size: var(--text-3xl); }
-h3 { font-size: var(--text-2xl); }
-h4 { font-size: var(--text-xl);  font-weight: var(--font-weight-semibold); }
+h1 {
+  font-size: var(--text-4xl);
+}
+h2 {
+  font-size: var(--text-3xl);
+}
+h3 {
+  font-size: var(--text-2xl);
+}
+h4 {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+}
 
 p {
   color: var(--color-text-body);
@@ -182,7 +196,6 @@ p {
   font-size: var(--text-sm);
   letter-spacing: 0.01em;
 }
-
 
 /* ------------------------------------------------------------
    4. Layout – Sida och innehållsbredd
@@ -226,7 +239,6 @@ p {
   margin-bottom: var(--space-4);
 }
 
-
 /* ------------------------------------------------------------
    5. Kort (Card)
    ------------------------------------------------------------ */
@@ -235,7 +247,9 @@ p {
   border-radius: var(--radius-xl);
   padding: var(--space-5) var(--space-6);
   box-shadow: var(--shadow-card);
-  transition: box-shadow var(--transition-base), background-color var(--transition-base);
+  transition:
+    box-shadow var(--transition-base),
+    background-color var(--transition-base);
 }
 
 .card:hover {
@@ -274,7 +288,6 @@ p {
   margin-top: var(--space-2);
 }
 
-
 /* ------------------------------------------------------------
    6. Knappar
    ------------------------------------------------------------ */
@@ -291,7 +304,10 @@ p {
   font-size: var(--text-base);
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  transition: background-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-fast);
+  transition:
+    background-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-fast);
   white-space: nowrap;
 }
 
@@ -365,7 +381,6 @@ p {
   opacity: 0.65;
 } */
 
-
 /* ------------------------------------------------------------
    7. Tabb-växlare (Segment Control)
    ------------------------------------------------------------ */
@@ -388,7 +403,9 @@ p {
   font-weight: var(--font-weight-medium);
   color: var(--color-text-muted);
   cursor: pointer;
-  transition: background-color var(--transition-base), color var(--transition-base);
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
   text-align: center;
 }
 
@@ -401,7 +418,6 @@ p {
 .tab:not(.tab--active):hover {
   color: var(--color-text-body);
 }
-
 
 /* ------------------------------------------------------------
    8. Valbarkortknappar (Option Cards)
@@ -416,6 +432,12 @@ p {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.option-grid--auto {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
 .option-card {
   display: flex;
   flex-direction: column;
@@ -427,7 +449,9 @@ p {
   border: 2px solid transparent;
   border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: border-color var(--transition-base), background-color var(--transition-base);
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base);
   text-align: center;
 }
 
@@ -466,7 +490,9 @@ p {
   font-weight: var(--font-weight-medium);
   color: var(--color-text-primary);
   cursor: pointer;
-  transition: border-color var(--transition-base), background-color var(--transition-base);
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base);
   text-align: center;
 }
 
@@ -477,7 +503,6 @@ p {
 .option-pill--selected {
   border-color: var(--color-green);
 }
-
 
 /* ------------------------------------------------------------
    10. Ikoner & Badge
@@ -504,7 +529,6 @@ p {
   background-color: var(--color-accent-light);
   color: var(--color-accent);
 }
-
 
 /* ------------------------------------------------------------
    11. Toggle / Switch
@@ -548,7 +572,7 @@ p {
 }
 
 .toggle__slider::before {
-  content: '';
+  content: "";
   position: absolute;
   height: 1.25rem;
   width: 1.25rem;
@@ -566,8 +590,6 @@ p {
 .toggle input:checked + .toggle__slider::before {
   transform: translateX(1.25rem);
 }
-
-
 
 /* ------------------------------------------------------------
    13. Achievement-kort
@@ -630,7 +652,6 @@ p {
   margin-top: var(--space-1);
 }
 
-
 /* ------------------------------------------------------------
    14. Hjälpklasser (Utilities)
    ------------------------------------------------------------ */
@@ -639,9 +660,15 @@ p {
   flex-direction: column;
 }
 
-.stack--sm  { gap: var(--space-2); }
-.stack--md  { gap: var(--space-4); }
-.stack--lg  { gap: var(--space-6); }
+.stack--sm {
+  gap: var(--space-2);
+}
+.stack--md {
+  gap: var(--space-4);
+}
+.stack--lg {
+  gap: var(--space-6);
+}
 
 .row {
   display: flex;
@@ -652,8 +679,12 @@ p {
   justify-content: space-between;
 }
 
-.w-full  { width: 100%; }
-.mt-auto { margin-top: auto; }
+.w-full {
+  width: 100%;
+}
+.mt-auto {
+  margin-top: auto;
+}
 
 .visually-hidden {
   position: absolute;
