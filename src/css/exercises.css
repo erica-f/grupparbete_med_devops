@@ -1,0 +1,126 @@
+/* EXERCISES – Page-specific overrides & components */
+
+/* ------------------------------------------------------------
+   Brand color overrides (exact values from graphic profile)
+   ------------------------------------------------------------ */
+:root {
+    --color-green:         #88A47C;
+    --color-green-dark:    #6b8960;
+    --color-green-light:   #a8c59c;
+    --color-green-muted:   #ccdec8;
+    --color-brand:         #88A47C;
+    --color-accent:        #FF8E72;
+    --color-accent-hover:  #e8775c;
+    --color-accent-light:  #ffd5ca;
+    --color-bg:            #F9F9F7;
+    --color-text-primary:  #2D3436;
+    --color-text-body:     #4a5a4a;
+}
+
+/* Inter as body font per graphic profile */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Headings keep Quicksand (already set in style.css via --font-sans) */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* ------------------------------------------------------------
+   Category switch (.btn_switch)
+   Styled as tab-group from style.css
+   ------------------------------------------------------------ */
+.btn_switch {
+    display: flex;
+    background-color: var(--color-bg-card);
+    border-radius: var(--radius-full);
+    padding: var(--space-1);
+    gap: var(--space-1);
+    margin-bottom: var(--space-6);
+}
+
+/* ------------------------------------------------------------
+   Exercise cards list
+   ------------------------------------------------------------ */
+#exercise_cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.exercise-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.exercise-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+}
+
+.exercise-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+/* Expanderbar detaljektion – skapas dynamiskt av JS */
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.exercise-card__details {
+    background-color: var(--color-green-muted);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+    margin-top: var(--space-4);
+    width: 100%;
+    animation: fadeSlideIn var(--transition-slow) ease;
+}
+
+.exercise-how-to {
+    font-size: var(--text-sm);
+    color: var(--color-text-body);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-3);
+}
+
+.exercise-equipment-label {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+}
+
+.exercise-equipment-label span {
+    font-weight: var(--font-weight-normal);
+}
+
+/* ------------------------------------------------------------
+   "Visa hur"-knapp
+   ------------------------------------------------------------ */
+.how-to-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background-color: var(--color-green-muted);
+    color: var(--color-green-dark);
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background-color var(--transition-base);
+}
+
+.how-to-btn:hover {
+    background-color: var(--color-green-light);
+}
