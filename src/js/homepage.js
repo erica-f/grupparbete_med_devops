@@ -124,7 +124,7 @@ export const choosetrainingConditionsHTML = (u) => {
 
   const l10 = document.createElement("label");
   l10.htmlFor = "t10";
-  l10.className = "option-card option-card__label";
+  l10.className = "option-card bold";
   l10.innerText = "10 min";
   grid1.append(l10);
 
@@ -138,7 +138,7 @@ export const choosetrainingConditionsHTML = (u) => {
 
   const l20 = document.createElement("label");
   l20.htmlFor = "t20";
-  l20.className = "option-card option-card__label";
+  l20.className = "option-card bold";
   l20.innerText = "20 min";
   grid1.append(l20);
 
@@ -152,7 +152,7 @@ export const choosetrainingConditionsHTML = (u) => {
 
   const l30 = document.createElement("label");
   l30.htmlFor = "t30";
-  l30.className = "option-card option-card__label";
+  l30.className = "option-card bold";
   l30.innerText = "30 min";
   grid1.append(l30);
 
