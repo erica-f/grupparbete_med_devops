@@ -1,5 +1,6 @@
 import { getUsers } from "../api/getDataFns.js";
 import { createUser } from "../api/createDataFns.js";
+// import [storeExerciseSettings] from "../"
 
 const greenCSSVariable = getComputedStyle(document.documentElement)
   .getPropertyValue("--color-green")
@@ -16,6 +17,7 @@ const saveChoices = (u) => {
   const selectedEquipment = document.querySelector(
     'input[name="equipment"]:checked',
   );
+
   const selectedKids = document.querySelector('input[name="kids"]:checked');
   console.log(
     "should save theese to LS",
@@ -27,18 +29,22 @@ const saveChoices = (u) => {
       : false,
     selectedKids?.id !== null && selectedKids.id === "kids-yes" ? true : false,
   );
-  // storeExerciseSettings(u.id,
-  // selectedTime?.id.split("t")[1],
-  // selectedPlace.id !== null && selectedPlace.id === "gym" ? true : false,
-  // selectedEquipment?.id !== null && selectedEquipment.id === "with-equipment" ? true : false,
-  // selectedKids?.id !== null && selectedKids.id === "kids-yes" ? true : false)
+  // storeExerciseSettings(
+  //   u.id,
+  //   selectedTime?.id.split("t")[1],
+  //   selectedPlace.id !== null && selectedPlace.id === "gym" ? true : false,
+  //   selectedEquipment?.id !== null && selectedEquipment.id === "with-equipment"
+  //     ? true
+  //     : false,
+  //   selectedKids?.id !== null && selectedKids.id === "kids-yes" ? true : false,
+  // );
 
   const radios = document.querySelectorAll('input[type="radio"]');
 
   radios.forEach((radio) => {
     radio.checked = false;
   });
-  // window.location.href = "/training.html";
+  window.location.href = "/training.html";
 };
 
 const checkForm = () => {
