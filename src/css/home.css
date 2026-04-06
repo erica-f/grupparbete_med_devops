@@ -12,11 +12,12 @@
 .salmon {
   color: var(--color-accent);
 }
-
-.option-grid input:checked + .option-card .salmon {
-  color: var(--color-text-on-green);
+.green {
+  color: var(--color-green);
 }
 
+.option-grid input:checked + .option-card .salmon,
+.option-grid input:checked + .option-card .green,
 .option-grid input:checked + .option-card {
   background-color: var(--color-green);
   color: var(--color-text-on-green);

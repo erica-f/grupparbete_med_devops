@@ -1,12 +1,12 @@
 import { getUsers } from "../api/getDataFns.js";
 import { createUser } from "../api/createDataFns.js";
 
-const greenCSSVariable = getComputedStyle(
-  document.documentElement,
-).getPropertyValue("--color-green");
-const salmonCSSVariable = getComputedStyle(
-  document.documentElement,
-).getPropertyValue("--color-accent");
+const greenCSSVariable = getComputedStyle(document.documentElement)
+  .getPropertyValue("--color-green")
+  .trim();
+const salmonCSSVariable = getComputedStyle(document.documentElement)
+  .getPropertyValue("--color-accent")
+  .trim();
 
 const saveChoices = (u) => {
   const selectedTime = document.querySelector('input[name="time"]:checked');
@@ -184,7 +184,8 @@ export const choosetrainingConditionsHTML = (u) => {
   grid2.append(homeLabel);
 
   const homeIcon = document.createElement("div");
-  homeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke=${greenCSSVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house text-primary-foreground"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>`;
+  homeIcon.className = "green";
+  homeIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house text-primary-foreground"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>`;
   homeLabel.append(homeIcon);
 
   const homeTitle = document.createElement("div");
@@ -211,7 +212,8 @@ export const choosetrainingConditionsHTML = (u) => {
   grid2.append(gymLabel);
 
   const gymIcon = document.createElement("div");
-  gymIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke=${greenCSSVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-warehouse-icon lucide-warehouse"><path d="M18 21V10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v11"/><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 1.132-1.803l7.95-3.974a2 2 0 0 1 1.837 0l7.948 3.974A2 2 0 0 1 22 8z"/><path d="M6 13h12"/><path d="M6 17h12"/></svg>`;
+  gymIcon.className = "green";
+  gymIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-warehouse-icon lucide-warehouse"><path d="M18 21V10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v11"/><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 1.132-1.803l7.95-3.974a2 2 0 0 1 1.837 0l7.948 3.974A2 2 0 0 1 22 8z"/><path d="M6 13h12"/><path d="M6 17h12"/></svg>`;
   gymLabel.append(gymIcon);
 
   const gymTitle = document.createElement("div");
@@ -252,7 +254,8 @@ export const choosetrainingConditionsHTML = (u) => {
   grid3.append(equipmentLabel);
 
   const equipmentIcon = document.createElement("div");
-  equipmentIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke=${greenCSSVariable} stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dumbbell text-primary"><path d="M14.4 14.4 9.6 9.6"></path><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"></path><path d="m21.5 21.5-1.4-1.4"></path><path d="M3.9 3.9 2.5 2.5"></path><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"></path></svg>`;
+  equipmentIcon.className = "green";
+  equipmentIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dumbbell text-primary"><path d="M14.4 14.4 9.6 9.6"></path><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"></path><path d="m21.5 21.5-1.4-1.4"></path><path d="M3.9 3.9 2.5 2.5"></path><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"></path></svg>`;
   equipmentLabel.append(equipmentIcon);
 
   const equipmentTitle = document.createElement("div");
@@ -279,7 +282,8 @@ export const choosetrainingConditionsHTML = (u) => {
   grid3.append(noEquipmentLabel);
 
   const noEquipmentIcon = document.createElement("div");
-  noEquipmentIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke=${greenCSSVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-person-standing-icon lucide-person-standing"><circle cx="12" cy="5" r="1"/><path d="m9 20 3-6 3 6"/><path d="m6 8 6 2 6-2"/><path d="M12 10v4"/></svg>`;
+  noEquipmentIcon.className = "green";
+  noEquipmentIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-person-standing-icon lucide-person-standing"><circle cx="12" cy="5" r="1"/><path d="m9 20 3-6 3 6"/><path d="m6 8 6 2 6-2"/><path d="M12 10v4"/></svg>`;
   noEquipmentLabel.append(noEquipmentIcon);
 
   const noEquipmentTitle = document.createElement("div");
@@ -322,7 +326,7 @@ export const choosetrainingConditionsHTML = (u) => {
 
   const kidsYesIcon = document.createElement("div");
   kidsYesIcon.className = "salmon";
-  kidsYesIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke=${salmonCSSVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-baby text-secondary"><path d="M9 12h.01"></path><path d="M15 12h.01"></path><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"></path><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"></path></svg>`;
+  kidsYesIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-baby text-secondary"><path d="M9 12h.01"></path><path d="M15 12h.01"></path><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"></path><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"></path></svg>`;
   kidsYesLabel.append(kidsYesIcon);
 
   const kidsYesTitle = document.createElement("div");
@@ -351,7 +355,7 @@ export const choosetrainingConditionsHTML = (u) => {
 
   const kidsNoIcon = document.createElement("div");
   kidsNoIcon.className = "salmon";
-  kidsNoIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke=${salmonCSSVariable} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-primary-foreground"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`;
+  kidsNoIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-primary-foreground"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`;
   kidsNoLabel.append(kidsNoIcon);
 
   const kidsNoTitle = document.createElement("div");
