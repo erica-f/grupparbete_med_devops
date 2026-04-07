@@ -31,6 +31,7 @@ const getDataFromSupabase = async ({
         .eq(doubleFilter[0].col, doubleFilter[0].value)
         .eq(doubleFilter[1].col, doubleFilter[1].value);
     }
+
     if (notStatement) {
       query = query.not(notStatement.col, "is", notStatement.value);
     }
@@ -65,7 +66,8 @@ export const getUser = async (userId) => {
 export const getExercises = async () => {
   return await getDataFromSupabase({
     tableName: "exercises",
-    selectParams: `id, name, description, with_kids, at_gym,  exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
+    selectParams: `id, name, description, with_kids, at_gym, exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
+
   });
 };
 
@@ -117,4 +119,13 @@ export const getPersonalBestFromSpecificExercise = async (
     selectParams: `persons(name), exercises(name), rep_no, total_reps, achieved_at`,
   });
   return dataArray[0];
+};
+
+// get data from reps
+export const getReps = async (level) => {
+  return await getDataFromSupabase({
+    tableName: "reps",
+    filter: { col: "lvl", value: level },
+    selectParams: `id, exercise_id, amount, lvl`,
+  });
 };

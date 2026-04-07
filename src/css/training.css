@@ -1,147 +1,131 @@
+#filter,
+#percent-text {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
 
-#filter, #percent-text {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
+#filter,
+#progress,
+#complete-training {
+  margin: 1.5rem 0;
 }
-#filter, #progress, #complete-training {
-    margin: 1.5rem 0;
-}
+
 .filter-dropdown {
-    color: var(--color-green);
+  color: var(--color-green);
 }
 
 .exercise {
-    /* background-color:var(--color-green-muted);
-    border-radius: var(--radius-xl);
-    padding: 1.25rem; */
-    display: grid;
-    grid-template-columns: 4fr 1fr;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  position: relative;
 }
+
 .exercise-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-#complete-training button {
-    background-color:var(--color-accent);
-    color:var(--color-text-on-accent);
-    padding: var(--space-1);
-    border-radius: var(--radius-md);
-    width: 100%;
-}
- 
+
 .rep-set {
-    /* display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem; */
-    /* max-width: 200px; */
-    font-size: var(--text-sm);
-    color: var(--color-text-primary);
-    margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  margin-top: var(--space-4);
 }
-/* input[type=number] {
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-green-dark);
-    width: 70px;
-    height: 45px;
-    /* appearance: textfield; */
-/* } *
-/* Chrome, Safari, Edge, Opera */
-/* input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0; */
-/* } */
+
+.input-3 {
+  display: none;
+}
+
 .exercise-right {
-    font-size: var(--text-sm);
-    justify-self: end;
-    display:flex;
-    align-items: end;
+  font-size: var(--text-sm);
+  justify-self: end;
+  display: flex;
+  align-items: end;
 }
 
 .completed {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    vertical-align: middle;
-    background-color: var(--color-bg);
-    border: 2px solid var(--color-green-dark);
-    appearance: none;
-    -webkit-appearance: none;
-    outline: none;
-    cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  vertical-align: middle;
+  background-color: var(--color-bg);
+  border: 2px solid var(--color-green-dark);
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .completed:checked {
-    background-color: var(--color-green-muted);
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>');
+  background-color: var(--color-green-muted);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>');
 }
 
 .exchange {
-    display: none;
+  display: none;
+  position: absolute;
+  left: 200;
+  top: 40;
+  z-index: 10;
+  width: 600px;
+  max-height: 500px;
+  overflow-y: scroll;
+  box-shadow: var(--shadow-card-hover) !important;
+  flex-direction: column;
 }
+
+.exchange-to {
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  text-align: left;
+}
+
 .exchange-btn {
-    border: none;
-    background: transparent;
-    color: var( --color-accent);
-    font-size: var(--text-sm)
+  border: none;
+  background: transparent;
+  color: var(--color-accent);
+  font-size: var(--text-sm)
+}
+
+.close-popup {
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  background: var(--color-green-light);
+  align-self: end;
+  padding: var(--space-2);
+}
+
+#workout-completed {
+  display: none;
+  position: fixed;
+  top: 100px;
+  height: 300px;
+  width: 600px;
+  box-shadow: var(--shadow-card-hover);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
 
 /* ------------------------------------------------------------
    12. Övningskort med checkbox (Training)
    ------------------------------------------------------------ */
+
 .exercise-card {
   background-color: var(--color-bg-card);
   border-radius: var(--radius-xl);
   padding: var(--space-5) var(--space-6);
-  /* display: flex;
-  flex-direction: column; */
   gap: var(--space-3);
   box-shadow: var(--shadow-card);
+  margin: var(--space-6);
 }
+
 .exercise-header {
-    margin-bottom: var(--space-3);
-}
-/* .exercise-card__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--space-4);
-}
-
-.exercise-card__done-btn {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-.exercise-card__checkbox {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  border: 2px solid var(--color-green-muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: border-color var(--transition-base), background-color var(--transition-base);
-}
-
-.exercise-card__checkbox--checked {
-  background-color: var(--color-green);
-  border-color: var(--color-green);
-} */
-
-.rep-inputs {
-  display: flex;
-  gap: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 
 .rep-input {
@@ -156,6 +140,7 @@ input::-webkit-inner-spin-button {
   text-align: center;
   cursor: pointer;
   transition: background-color var(--transition-base);
+  margin-right: 5px;
 }
 
 .rep-input:hover {
@@ -166,9 +151,6 @@ input::-webkit-inner-spin-button {
    9. Progressbar
    ------------------------------------------------------------ */
 .progress-wrapper {
-  /* display: flex;
-  align-items: center;
-  justify-content: space-between; */
   gap: var(--space-3);
   margin-bottom: var(--space-4);
 }
@@ -180,35 +162,13 @@ input::-webkit-inner-spin-button {
   justify-content: space-between;
 }
 
-/* .progress-percent {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  white-space: nowrap;
-} */
-
-/* .progress-bar {
-  height: 10px;
-  background-color: var(--color-bg-card);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-  margin-top: var(--space-2);
-}
-
-.progress-bar__fill {
-  height: 100%;
-  background-color: var(--color-progress);
-  border-radius: var(--radius-full);
-  width: 0%;
-  /* transition: width var(--transition-slow); */
-/* } */ 
-
 #progress-bar {
-    border-radius: var(--radius-lg);
+  border-radius: var(--radius-lg);
 }
 
 #progress-done {
-    border-radius: var(--radius-lg);
-    padding: 10px;
-    width: 0%;
-    background-color: var(--color-accent);
+  border-radius: var(--radius-lg);
+  padding: 10px;
+  width: 0%;
+  background-color: var(--color-accent);
 }
