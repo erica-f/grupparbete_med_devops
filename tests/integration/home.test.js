@@ -7,4 +7,5 @@ describe("homepage integration tests", () => {
   test("chosing a user should send user to training preferences", async () => {});
   test("'Skapa ny profil' should add a new user and send user to training preferences", async () => {});
   test("chosing all preferences should enable btn", async () => {});
+  test("checkForm should disable btn under right conditions", () => {});
 });
