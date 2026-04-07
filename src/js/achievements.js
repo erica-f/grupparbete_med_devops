@@ -120,7 +120,6 @@ function displayLocked(locked) {
 };
 
 export async function initAchievements(userId) {
-    let totalAchievements = [];
     try {
         const [allAch, stats, claimed] = await Promise.all([
             getAchievements(),
@@ -129,7 +128,6 @@ export async function initAchievements(userId) {
         ]);
 
         const result = prepareAchievements(allAch, stats, claimed);
-        totalAchievements = [...result.locked, ...result.unlocked]
 
         displayUnlocked(result.unlocked);
         displayLocked(result.locked);
