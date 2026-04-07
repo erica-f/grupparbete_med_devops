@@ -13,14 +13,17 @@
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-5) var(--space-4);
+  margin: var(--space-3) var(--space-1);
   background-color: var(--color-bg-card);
   border-radius: var(--radius-xl);
   text-align: center;
   box-shadow: var(--shadow-card);
+  cursor: pointer;
 }
 
 .achievement-card--locked {
   opacity: 0.5;
+  filter: grayscale(1);
 }
 
 .achievement-card__name {
@@ -70,15 +73,16 @@
 
 .locked {
   stroke: #6d7878;
+  stroke-width: 1.5;
 }
 .green {
   stroke: var(--color-green);
 }
 .bronze {
-  stroke: #cd7f32; filter: drop-shadow(0 0 5px #cd7f32)
+  stroke: #cd7f32;
 }
 .silver {
-  stroke: #c0c0c0; filter: drop-shadow(0 0 5px silver)
+  stroke: #c0c0c0;
 }
 .gold {
   stroke: #ffd700; filter: drop-shadow(0 0 5px gold);
