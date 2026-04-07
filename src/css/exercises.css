@@ -1,33 +1,90 @@
 /* EXERCISES – Page-specific overrides & components */
 
-/* ------------------------------------------------------------
-   Brand color overrides (exact values from graphic profile)
-   ------------------------------------------------------------ */
-:root {
-    --color-green:         #88A47C;
-    --color-green-dark:    #6b8960;
-    --color-green-light:   #a8c59c;
-    --color-green-muted:   #ccdec8;
-    --color-brand:         #88A47C;
-    --color-accent:        #FF8E72;
-    --color-accent-hover:  #e8775c;
-    --color-accent-light:  #ffd5ca;
-    --color-bg:            #F9F9F7;
-    --color-text-primary:  #2D3436;
-    --color-text-body:     #4a5a4a;
+/* ============================================================
+   Navigation bar
+   ============================================================ */
+.navbar {
+    background-color: var(--color-green);
+    padding: var(--space-4) var(--page-padding-x);
+    box-shadow: var(--shadow-card);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-/* Inter as body font per graphic profile */
-body {
-    font-family: 'Inter', sans-serif;
+.navbar__container {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    width: 100%;
 }
 
-/* Headings keep Quicksand (already set in style.css via --font-sans) */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Quicksand', sans-serif;
+.navbar__back {
+    background: none;
+    border: none;
+    color: var(--color-text-on-green);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: opacity var(--transition-base);
+    flex-shrink: 0;
 }
 
-/* ------------------------------------------------------------
+.navbar__back:hover {
+    opacity: 0.8;
+}
+
+.navbar__logo {
+    font-family: var(--font-sans);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-on-green);
+    text-decoration: none;
+    flex-grow: 1;
+}
+
+.navbar__menu {
+    display: flex;
+    list-style: none;
+    gap: var(--space-6);
+    margin: 0;
+    padding: 0;
+}
+
+.navbar__link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-base);
+    position: relative;
+}
+
+.navbar__link:hover {
+    color: var(--color-text-on-green);
+}
+
+.navbar__link--active {
+    color: var(--color-text-on-green);
+    font-weight: var(--font-weight-semibold);
+}
+
+.navbar__link--active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-text-on-green);
+    border-radius: 1px;
+}
+
+/*------------------------------------------------------------
    Category switch (.btn_switch)
    Styled as tab-group from style.css
    ------------------------------------------------------------ */
