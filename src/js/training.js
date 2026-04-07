@@ -106,13 +106,11 @@ async function getData() {
     let userData = await getUserData(exerciseSettings.user);
     let exerciseList = Array.from(await getExerciseData());
     let filteredList = filterExerciseList(exerciseList, exerciseSettings.children, exerciseSettings.equipment, exerciseSettings.gym);
-    let selectedExercises = [];
+    let selectedExercises = sessionExercises;
     //Saving exercises for the same session
     if (sessionExercises.length < 1) {
         selectedExercises = getRandomExercises(filteredList, totalNumberOfExercises);
-    } else {
-        selectedExercises = sessionExercises;
-    }
+    } 
     let getRepAmount = await getRepetitions(userData.lvl);
     let numberOfSets = 2;
     if (await userData.lvl > 3) {
@@ -149,10 +147,10 @@ function populateWorkout(exerciseId, selectedExercise) {
     for (let i = 0; i < noOfCards; i++) {
         let repAmount = reps.find((amount) => amount.exercise_id === selectedExercises[i].id);
         let timeOrRep = "reps";
-        if(selectedExercises[i].name.toLowerCase().includes("plank")) {
+        if (selectedExercises[i].name.toLowerCase().includes("plank")) {
             timeOrRep = "sek"
         }
-        
+
         card += `<div class="exercise exercise-card" id="exercise-card-${i + 1}">
                     <div>
                         <div class="exercise-header">
@@ -169,7 +167,7 @@ function populateWorkout(exerciseId, selectedExercise) {
                     </div>
                     <div class="exercise-right">
                         <div class="checkbox-wrapper">
-                            <input type="checkbox" name="completed" class="completed" id="checkbox-${i+1}">
+                            <input type="checkbox" name="completed" class="completed" id="checkbox-${i + 1}">
                             <label for="completed">Klar</label>
                         </div>
                         <div class="exchange-exercise">
@@ -202,7 +200,7 @@ function populateWorkout(exerciseId, selectedExercise) {
 
 function checkCompletedExercises() {
     let completedExercises = JSON.parse(sessionStorage.getItem("completedExercises")) || [];
-    for (let i = 0; i < completedExercises.length; i++) { 
+    for (let i = 0; i < completedExercises.length; i++) {
         document.getElementById("checkbox-" + completedExercises[i]).checked = true;
     }
     updateProgress();
@@ -268,11 +266,11 @@ function markExerciseCompleted(e) {
     let selectedExercise = e.id.charAt(e.id.length - 1);
 
     if (e.checked) {
-        if (!completedExercisesList.includes(selectedExercise)){
+        if (!completedExercisesList.includes(selectedExercise)) {
             completedExercisesList.push(selectedExercise);
-        }   
+        }
     } else {
-        if (completedExercisesList.includes(selectedExercise)){
+        if (completedExercisesList.includes(selectedExercise)) {
             let currentIndex = completedExercisesList.indexOf(selectedExercise);
             completedExercisesList.splice(currentIndex, 1);
         }
