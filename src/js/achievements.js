@@ -119,9 +119,8 @@ function displayLocked(locked) {
     renderToContainer('locked', locked);
 };
 
-let totalAchievements = [];
-
 export async function initAchievements(userId) {
+    let totalAchievements = [];
     try {
         const [allAch, stats, claimed] = await Promise.all([
             getAchievements(),
