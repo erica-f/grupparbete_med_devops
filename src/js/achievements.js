@@ -1,7 +1,5 @@
 import { getUserAchievements, getAchievements, getPersonalBest } from "../api/getDataFns.js"
 
-let totalAchievements = [];
-
 const iconMap = {
     "medalj": "award-icon",
     "hus": "house-icon",
@@ -120,6 +118,8 @@ function displayUnlocked(unlocked) {
 function displayLocked(locked) {
     renderToContainer('locked', locked);
 };
+
+let totalAchievements = [];
 
 export async function initAchievements(userId) {
     try {
