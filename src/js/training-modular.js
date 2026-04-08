@@ -12,64 +12,115 @@ export function numberOfExercises(time) {
 }
 export function filterExerciseList(list, kids, equipment, gym) {
     let filteredList = [];
-    let needEquipment = false;
 
     list.filter(exercise => {
-        if (exercise.exercise_equipment.length > 0) {
-            needEquipment = true;
+          //no kids, equipment, at gym
+        if (kids == false && equipment == true && gym == true) {
+            filteredList.push(exercise);
         }
-        if (kids == true) {
-            if (equipment == false) {
-                if (gym == false) {
-                    //filter for kids, equipment and gym
-                    if (exercise.with_kids === kids && needEquipment === equipment && exercise.at_gym === gym) {
-                        filteredList.push(exercise);
-                    }
-                } else {
-                    //filter for kids and equipment
-                    if (exercise.with_kids === kids && needEquipment === equipment) {
-                        filteredList.push(exercise);
-                    }
-                }
-            } else {
-                if (gym == false) {
-                    //filter for kids and gym
-                    if (exercise.with_kids === kids && exercise.at_gym === gym) {
-                        filteredList.push(exercise);
-                    }
-                } else {
-                    //filter for kids
-                    if (exercise.with_kids === kids) {
-                        filteredList.push(exercise);
-                    }
-                }
-            }
-        } else {
-            if (equipment == false) {
-                if (gym == false) {
-                    //filter equipment and gym
-                    if (needEquipment === equipment && exercise.at_gym === gym) {
-                        filteredList.push(exercise);
-                    }
-                } else {
-                    //filter for equipment
-                    if (needEquipment === equipment) {
-                        filteredList.push(exercise);
-                    }
-                }
-            } else {
-                if (gym == false) {
-                    //filter for gym
-                    if (exercise.at_gym === gym) {
-                        filteredList.push(exercise);
-                    }
-                } else {
-                    //no filters applies for this combo
-                    filteredList.push(exercise);
-                }
+        //Kids, no equipment, no gym
+        if (kids == true && equipment == false && gym == false) {
+            if (exercise.with_kids === kids && exercise.exercise_equipment.length == 0 && exercise.at_gym === gym) {
+                filteredList.push(exercise);
             }
         }
+        //kids, no equipment, at gym
+        if (kids == true && equipment == false && gym == true) {
+            if (exercise.with_kids === kids && exercise.exercise_equipment.length == 0) {
+                filteredList.push(exercise);
+            }
+        }
+        //kids, with equipment, no gym
+        if (kids == true && equipment == true && gym == false) {
+            if (exercise.with_kids === kids && exercise.at_gym === gym) {
+                filteredList.push(exercise);
+            }
+        }
+        //kids, equipment, gym 
+         if (kids == true && equipment == true && gym == true) {
+            if (exercise.with_kids === kids) {
+                filteredList.push(exercise);
+            }
+        }
+        //kids without equipment, at gym
+        if (kids == true && equipment == false && gym == true) {
+            if (exercise.with_kids === kids && exercise.exercise_equipment.length == 0) {
+                filteredList.push(exercise);
+            }
+        }
+        //No kids, no equipment, no gym
+        if (kids == false && equipment == false && gym == false) {
+            if (exercise.exercise_equipment.length == 0 && exercise.at_gym === gym) {
+                filteredList.push(exercise);
+            }
+        }
+        //no kids, no equipment, at gym
+        if (kids == false && equipment == false && gym == true) {
+            if (exercise.exercise_equipment.length == 0) {
+                filteredList.push(exercise);
+            }
+        }
+        //no kids, equipment, no gym
+        if (kids == false && equipment == true && gym == false) {
+            if (exercise.at_gym === gym) {
+                filteredList.push(exercise);
+            }
+        }
+      
+
+        // if (kids == true) {
+        //     if (equipment == false) {
+        //         if (gym == false) {
+        //             //filter for kids, equipment and gym
+        //             if (exercise.with_kids === kids && exercise.exercise_equipment.length == 0 && exercise.at_gym === gym) {
+        //                 filteredList.push(exercise);
+        //             }
+        //         } else {
+        //             //filter for kids and equipment
+        //             if (exercise.with_kids === kids && exercise.exercise_equipment.length == 0) {
+        //                 filteredList.push(exercise);
+        //             }
+        //         }
+        //     } else {
+        //         if (gym == false) {
+        //             //filter for kids and gym
+        //             if (exercise.with_kids === kids && exercise.at_gym === gym) {
+        //                 filteredList.push(exercise);
+        //             }
+        //         } else {
+        //             //filter for kids
+        //             if (exercise.with_kids === kids) {
+        //                 filteredList.push(exercise);
+        //             }
+        //         }
+        //     }
+        // } else {
+        //     if (equipment == false) {
+        //         if (gym == false) {
+        //             //filter equipment and gym
+        //             if (exercise.exercise_equipment.length == 0 && exercise.at_gym === gym) {
+        //                 filteredList.push(exercise);
+        //             }
+        //         } else {
+        //             //filter for equipment
+        //             if (exercise.exercise_equipment.length == 0) {
+        //                 filteredList.push(exercise);
+        //             }
+        //         }
+        //     } else {
+        //         if (gym == false) {
+        //             //filter for gym
+        //             if (exercise.at_gym === gym) {
+        //                 filteredList.push(exercise);
+        //             }
+        //         } else {
+        //             //no filters applies for this combo
+        //             filteredList.push(exercise);
+        //         }
+        //     }
+        // }
     });
+    console.log(filteredList);
     return filteredList;
 }
 
