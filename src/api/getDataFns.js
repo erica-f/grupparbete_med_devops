@@ -70,8 +70,7 @@ export const getUser = async (userId) => {
 export const getExercises = async () => {
   return await getDataFromSupabase({
     tableName: "exercises",
-    selectParams: `id, name, description, with_kids, at_gym,  exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
-    orderBy: { col: "name", asc: true },
+    selectParams: `id, name, description, how_to, with_kids, at_gym,  exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
   });
 };
 
@@ -79,7 +78,7 @@ export const getExampleExercises = async () => {
   return await getDataFromSupabase({
     tableName: "exercises",
     notStatement: { col: "img_src", value: null },
-    selectParams: `id, name, description, with_kids, at_gym, exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
+    selectParams: `id, name, description, how_to, with_kids, at_gym, exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
   });
 };
 

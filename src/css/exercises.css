@@ -1,0 +1,183 @@
+/* EXERCISES – Page-specific overrides & components */
+
+/* ============================================================
+   Navigation bar
+   ============================================================ */
+.navbar {
+    background-color: var(--color-green);
+    padding: var(--space-4) var(--page-padding-x);
+    box-shadow: var(--shadow-card);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar__container {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    width: 100%;
+}
+
+.navbar__back {
+    background: none;
+    border: none;
+    color: var(--color-text-on-green);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: opacity var(--transition-base);
+    flex-shrink: 0;
+}
+
+.navbar__back:hover {
+    opacity: 0.8;
+}
+
+.navbar__logo {
+    font-family: var(--font-sans);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-on-green);
+    text-decoration: none;
+    flex-grow: 1;
+}
+
+.navbar__menu {
+    display: flex;
+    list-style: none;
+    gap: var(--space-6);
+    margin: 0;
+    padding: 0;
+}
+
+.navbar__link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-base);
+    position: relative;
+}
+
+.navbar__link:hover {
+    color: var(--color-text-on-green);
+}
+
+.navbar__link--active {
+    color: var(--color-text-on-green);
+    font-weight: var(--font-weight-semibold);
+}
+
+.navbar__link--active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-text-on-green);
+    border-radius: 1px;
+}
+
+/*------------------------------------------------------------
+   Category switch (.btn_switch)
+   Styled as tab-group from style.css
+   ------------------------------------------------------------ */
+.btn_switch {
+    display: flex;
+    background-color: var(--color-bg-card);
+    border-radius: var(--radius-full);
+    padding: var(--space-1);
+    gap: var(--space-1);
+    margin-bottom: var(--space-6);
+}
+
+/* ------------------------------------------------------------
+   Exercise cards list
+   ------------------------------------------------------------ */
+#exercise_cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.exercise-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.exercise-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+}
+
+.exercise-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+/* Expanderbar detaljektion – skapas dynamiskt av JS */
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.exercise-card__details {
+    background-color: var(--color-green-muted);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+    margin-top: var(--space-4);
+    width: 100%;
+    animation: fadeSlideIn var(--transition-slow) ease;
+}
+
+.exercise-how-to {
+    font-size: var(--text-sm);
+    color: var(--color-text-body);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-3);
+}
+
+.exercise-equipment-label {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+}
+
+.exercise-equipment-label span {
+    font-weight: var(--font-weight-normal);
+}
+
+/* ------------------------------------------------------------
+   "Visa hur"-knapp
+   ------------------------------------------------------------ */
+.how-to-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background-color: var(--color-green-muted);
+    color: var(--color-green-dark);
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background-color var(--transition-base);
+}
+
+.how-to-btn:hover {
+    background-color: var(--color-green-light);
+}
