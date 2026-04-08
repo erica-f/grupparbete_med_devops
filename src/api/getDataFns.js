@@ -6,6 +6,7 @@ const getDataFromSupabase = async ({
   doubleFilter,
   notStatement,
   selectParams,
+  orderBy,
 }) => {
   console.log(
     "get data in table:",
@@ -34,6 +35,9 @@ const getDataFromSupabase = async ({
 
     if (notStatement) {
       query = query.not(notStatement.col, "is", notStatement.value);
+    }
+    if (orderBy) {
+      query = query.order(orderBy.col, { ascending: orderBy.asc });
     }
 
     const { data, error } = await query;
@@ -66,8 +70,8 @@ export const getUser = async (userId) => {
 export const getExercises = async () => {
   return await getDataFromSupabase({
     tableName: "exercises",
-    selectParams: `id, name, description, with_kids, at_gym, exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
-
+    selectParams: `id, name, description, with_kids, at_gym,  exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
+    orderBy: { col: "name", asc: true },
   });
 };
 

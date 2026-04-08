@@ -1,0 +1,89 @@
+/* ------------------------------------------------------------
+   13. Achievement-kort
+   ------------------------------------------------------------ */
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.achievement-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-4);
+  margin: var(--space-3) var(--space-1);
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+}
+
+.achievement-card--locked {
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+.achievement-card__name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+/* Streak-banner */
+.streak-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-green-muted);
+  padding: var(--space-5) var(--space-6);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--space-6);
+}
+
+.streak-banner__label {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-1);
+}
+
+.streak-banner__value {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.streak-banner__sub {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+}
+
+.icon {
+  fill: none;  
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.locked {
+  stroke: #6d7878;
+  stroke-width: 1.5;
+}
+.green {
+  stroke: var(--color-green);
+}
+.bronze {
+  stroke: #cd7f32;
+}
+.silver {
+  stroke: #c0c0c0;
+}
+.gold {
+  stroke: #ffd700; filter: drop-shadow(0 0 5px gold);
+}
