@@ -15,34 +15,33 @@ const iconMap = {
     "vikt": "weight-icon"
 };
 
-const getIconId = (iconName) => iconMap[iconName] || "medalj-icon";
+export const getIconId = (iconName) => iconMap[iconName] || "award-icon";
 
-function getNextGoal(ach, status) {
+export function getNextGoal(ach, status) {
     if (status === 'locked') return { label: 'Brons', value: ach.bronze };
     if (status === 'bronze') return { label: 'Silver', value: ach.silver};
     if (status === 'silver') return { label: 'Guld', value: ach.gold};
     return null;
 };
 
-function getStatus(achievement, userProgress) {
+export function getStatus(achievement, userProgress) {
     if (userProgress >= achievement.gold) return 'gold';
     if (userProgress >= achievement.silver) return 'silver';
     if (userProgress >= achievement.bronze) return 'bronze'
     return 'locked'
 };
 
-const getUserStats = async (userId) => {
+export const getUserStats = async (userId) => {
     const personalBest = await getPersonalBest(userId);
 
     const statsLookup = {};
     personalBest.forEach(pb => {
         statsLookup[pb.exercise_id] = pb.total_reps;
     });
-    console.log("data", statsLookup)
     return statsLookup;
 };
 
-function prepareAchievements(allAchievements, userStats, userClaimed) {
+export function prepareAchievements(allAchievements, userStats, userClaimed) {
     const locked = [];
     const unlocked = [];
 
@@ -50,7 +49,6 @@ function prepareAchievements(allAchievements, userStats, userClaimed) {
         const progress = userStats[String(ach.exercise_id)] || 0;
         const claim = userClaimed.find(c => c.achievements && c.achievements.id === ach.id);
         const userClaimedDate = claim ? claim.achieved_date : null;
-        console.log(`Achievement: ${ach.name}, Claim:`, !!claim, "Datum:", userClaimedDate);
         
         const enrichedAch = {
             ...ach,
