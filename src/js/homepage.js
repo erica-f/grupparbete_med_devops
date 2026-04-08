@@ -1,6 +1,6 @@
 import { getUsers } from "../api/getDataFns.js";
 import { createUser } from "../api/createDataFns.js";
-// import [storeExerciseSettings] from "../"
+import { storeExerciseSettings } from "./localStorageFns.js";
 
 const getColorsFromCSS = () => {
   const green = getComputedStyle(document.documentElement)
@@ -20,27 +20,19 @@ const saveChoices = (u) => {
   const selectedEquipment = document.querySelector(
     'input[name="equipment"]:checked',
   );
-
   const selectedKids = document.querySelector('input[name="kids"]:checked');
-  console.log(
-    "should save theese to LS",
-    u.id,
-    selectedTime?.id.split("t")[1],
-    selectedPlace.id !== null && selectedPlace.id === "gym" ? true : false,
+
+  const time = selectedTime?.id.split("t")[1];
+  const gym =
+    selectedPlace.id !== null && selectedPlace.id === "gym" ? true : false;
+  const equipment =
     selectedEquipment?.id !== null && selectedEquipment.id === "with-equipment"
       ? true
-      : false,
-    selectedKids?.id !== null && selectedKids.id === "kids-yes" ? true : false,
-  );
-  // storeExerciseSettings(
-  //   u.id,
-  //   selectedTime?.id.split("t")[1],
-  //   selectedPlace.id !== null && selectedPlace.id === "gym" ? true : false,
-  //   selectedEquipment?.id !== null && selectedEquipment.id === "with-equipment"
-  //     ? true
-  //     : false,
-  //   selectedKids?.id !== null && selectedKids.id === "kids-yes" ? true : false,
-  // );
+      : false;
+  const kids =
+    selectedKids?.id !== null && selectedKids.id === "kids-yes" ? true : false;
+
+  storeExerciseSettings(u.id, time, kids, equipment, gym);
 
   const radios = document.querySelectorAll('input[type="radio"]');
 
