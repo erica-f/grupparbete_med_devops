@@ -13,20 +13,31 @@ const exerciseBelongsToGroup = (exercise, group) => {
     return BODYPART_GROUPS[group].some((part) => bodyparts.includes(part));
 };
 
-const getEquipmentText = (exercise) => {
+const getEquipmentItems = (exercise) => {
     const raw = exercise.exercise_equipment;
-    if (!raw) return 'Ingen utrustning krävs';
-    const equipment = (Array.isArray(raw) ? raw : [raw]).map((e) => e.equipment?.name).filter(Boolean);
-    if (equipment.length === 0) return 'Ingen utrustning krävs';
-    return equipment.join(', ');
+    if (!raw) return [];
+    return (Array.isArray(raw) ? raw : [raw]).map((e) => e.equipment).filter(Boolean);
 };
 
 const createDetailsElement = (exercise) => {
     const details = document.createElement('div');
     details.classList.add('exercise-card__details');
+
+    const equipment = getEquipmentItems(exercise);
+
+    let equipmentHtml;
+    if (equipment.length === 0) {
+        equipmentHtml = '<span class="equipment-none">Ingen utrustning krävs</span>';
+    } else {
+        equipmentHtml = equipment.map((eq) => {
+            const tooltip = eq.description ? ` data-tooltip="${eq.description.replace(/"/g, '&quot;')}"` : '';
+            return `<span class="equipment-badge"${tooltip}>${eq.name}</span>`;
+        }).join('');
+    }
+
     details.innerHTML = `
         ${exercise.how_to ? `<p class="exercise-how-to">${exercise.how_to}</p>` : ''}
-        <p class="exercise-equipment-label">Utrustning: <span>${getEquipmentText(exercise)}</span></p>
+        <p class="exercise-equipment-label">Utrustning: ${equipmentHtml}</p>
     `;
     return details;
 };
