@@ -1,48 +1,8 @@
-import { getExercises, getReps, getUser } from "../api/getDataFns.js";
 import { updTotalReps, updUserLvl } from "../api/updDataFns.js";
-import { getRandomExercises, numberOfExercises, filterExerciseList, markExerciseCompleted, displayWorkoutComleted, checkCompletedExercises } from "./training-modular.js";
-
-storeExerciseSettings(5, 5, false, true, false);
-
-let totalNumberOfExercises = 0;
-let exerciseSettings = JSON.parse(localStorage.getItem("exerciseSettings")) || [];
-
-function storeExerciseSettings(user, time, children, equipment, gym) {
-    let exerciseSettings = {
-        user: user,
-        time: time,
-        gym: gym,
-        equipment: equipment,
-        children: children
-    };
-    localStorage.setItem("exerciseSettings", JSON.stringify(exerciseSettings));
-}
-
-/* Fetch the exercises and create the cards on page load */
-
-async function getData() {
-    totalNumberOfExercises = numberOfExercises(exerciseSettings.time);
-    let userData = await getUser(exerciseSettings.user);
-    let exerciseList = Array.from(await getExercises());
-    let filteredList = filterExerciseList(exerciseList, exerciseSettings.children, exerciseSettings.equipment, exerciseSettings.gym);
-    let selectedExercises = JSON.parse(sessionStorage.getItem("exercisesList")) || [];;
-    //Saving exercises for the same session
-    if (selectedExercises.length < 1) {
-        selectedExercises = getRandomExercises(filteredList, totalNumberOfExercises);
-    } 
-    let getRepAmount = await getReps(userData.lvl);
-    const savedsettings = {
-        totalNumberOfExercises: totalNumberOfExercises,
-        userData: userData,
-        filteredList: filteredList,
-        selectedExercises: selectedExercises,
-        getRepAmount: getRepAmount,
-    }
-    return savedsettings;
-}
+import { exerciseSettings, getData } from "./training-data.js";
+import { markExerciseCompleted, displayWorkoutComleted, checkCompletedExercises } from "./training-modular.js";
 
 let settings = await getData();
-
 populateWorkout();
 
 function populateWorkout(exerciseId, selectedExercise) {
@@ -76,7 +36,7 @@ function populateWorkout(exerciseId, selectedExercise) {
                         <div class="exercise-header">
                             <h4 >${selectedExercises[i].name}</h4>
                             <p class="text-muted">${selectedExercises[i].description}</p>
-                            <p class="text-brand">${settings.numberOfSets} set x ${repAmount.amount} ${timeOrRep}</p>
+                            <p class="text-brand">${settings.userData.lvl < 4 ? 2 : 3} set x ${repAmount.amount} ${timeOrRep}</p>
                         </div>
                         <p class="text-muted">Avklarade ${timeOrRep} per set</p>
                         <div class="rep-set" id="${selectedExercises[i].id}">
@@ -176,7 +136,7 @@ function updateProgress() {
     let progressBar = document.getElementById("progress-done");
     let progressText = document.getElementById("progress-percent");
     let exercisesCompletedText = document.getElementById("exercises-completed");
-    let percentDone = Math.round((completedExercises.length / totalNumberOfExercises) * 100);
+    let percentDone = Math.round((completedExercises.length / settings.totalNumberOfExercises) * 100);
     progressBar.style.width = percentDone + "%";
     progressText.textContent = percentDone + "%";
     exercisesCompletedText.textContent = completedExercises.length;
