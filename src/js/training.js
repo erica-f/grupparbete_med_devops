@@ -1,6 +1,6 @@
 import { getExercises, getReps, getUser } from "../api/getDataFns.js";
 import { updTotalReps, updUserLvl } from "../api/updDataFns.js";
-
+storeExerciseSettings(5, 5, false, true, false);
 let totalNumberOfExercises = 0;
 let exerciseSettings = JSON.parse(localStorage.getItem("exerciseSettings")) || [];
 
@@ -14,7 +14,6 @@ function storeExerciseSettings(user, time, children, equipment, gym) {
     };
     localStorage.setItem("exerciseSettings", JSON.stringify(exerciseSettings));
 }
-storeExerciseSettings(5, 5, false, true, false);
 
 /* Fetch the exercises and create the cards on page load */
 
@@ -37,7 +36,9 @@ function getRandomExercises(filteredList, numberOfExercises) {
     }
     return randomExercises;
 };
-
+function numberOfExercises(time) {
+    return Math.floor(time / 2);
+}
 function filterExerciseList(list, kids, equipment, gym) {
     let filteredList = [];
     let needEquipment = false;
@@ -101,14 +102,13 @@ function filterExerciseList(list, kids, equipment, gym) {
     return filteredList;
 }
 async function getData() {
-    let sessionExercises = JSON.parse(sessionStorage.getItem("exercisesList")) || [];
-    totalNumberOfExercises = Math.floor(exerciseSettings.time / 2);
+    totalNumberOfExercises = numberOfExercises(exerciseSettings.time);
     let userData = await getUserData(exerciseSettings.user);
     let exerciseList = Array.from(await getExerciseData());
     let filteredList = filterExerciseList(exerciseList, exerciseSettings.children, exerciseSettings.equipment, exerciseSettings.gym);
-    let selectedExercises = sessionExercises;
+    let selectedExercises = JSON.parse(sessionStorage.getItem("exercisesList")) || [];;
     //Saving exercises for the same session
-    if (sessionExercises.length < 1) {
+    if (selectedExercises.length < 1) {
         selectedExercises = getRandomExercises(filteredList, totalNumberOfExercises);
     } 
     let getRepAmount = await getRepetitions(userData.lvl);
