@@ -6,6 +6,7 @@ const getDataFromSupabase = async ({
   doubleFilter,
   notStatement,
   selectParams,
+  orderBy,
 }) => {
   console.log(
     "get data in table:",
@@ -31,8 +32,12 @@ const getDataFromSupabase = async ({
         .eq(doubleFilter[0].col, doubleFilter[0].value)
         .eq(doubleFilter[1].col, doubleFilter[1].value);
     }
+
     if (notStatement) {
       query = query.not(notStatement.col, "is", notStatement.value);
+    }
+    if (orderBy) {
+      query = query.order(orderBy.col, { ascending: orderBy.asc });
     }
 
     const { data, error } = await query;
@@ -65,7 +70,7 @@ export const getUser = async (userId) => {
 export const getExercises = async () => {
   return await getDataFromSupabase({
     tableName: "exercises",
-    selectParams: `id, name, description, with_kids, at_gym,  exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
+    selectParams: `id, name, description, how_to, with_kids, at_gym,  exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
   });
 };
 
@@ -73,7 +78,7 @@ export const getExampleExercises = async () => {
   return await getDataFromSupabase({
     tableName: "exercises",
     notStatement: { col: "img_src", value: null },
-    selectParams: `id, name, description, with_kids, at_gym, exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
+    selectParams: `id, name, description, how_to, with_kids, at_gym, exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
   });
 };
 
@@ -89,7 +94,7 @@ export const getUserAchievements = async (userId) => {
     filter: { col: "person_id", value: userId },
     selectParams: `achieved_date, 
                   persons(name), 
-                  achievements(name, description, requirement_type,bronze, silver, gold, 
+                  achievements(id, name, description, requirement_type,bronze, silver, gold, 
                     exercises(name,description,
                       person_best(total_reps)))`,
   });
@@ -100,7 +105,7 @@ export const getPersonalBest = async (userId) => {
   return await getDataFromSupabase({
     tableName: "person_best",
     filter: { col: "person_id", value: userId },
-    selectParams: `person_id, exercise_id, persons(name), exercises(name), rep_no, achieved_at`,
+    selectParams: `person_id, exercise_id, persons(name), exercises(name), rep_no, total_reps, achieved_at`,
   });
 };
 
@@ -117,4 +122,13 @@ export const getPersonalBestFromSpecificExercise = async (
     selectParams: `persons(name), exercises(name), rep_no, total_reps, achieved_at`,
   });
   return dataArray[0];
+};
+
+// get data from reps
+export const getReps = async (level) => {
+  return await getDataFromSupabase({
+    tableName: "reps",
+    filter: { col: "lvl", value: level },
+    selectParams: `id, exercise_id, amount, lvl`,
+  });
 };

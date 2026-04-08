@@ -90,17 +90,21 @@ export const updPersonalBest = async (userId, exerciseId, repNo) => {
 };
 
 export const updTotalReps = async (userId, exerciseId, repNo) => {
-  const personalBestSpecificExercise =
-    await getPersonalBestFromSpecificExercise(userId, exerciseId);
+  const personalBestSpecificExercise = await getPersonalBestFromSpecificExercise(userId, exerciseId);
+  if (personalBestSpecificExercise == null) {
+    // a personalBest with that person and exercise doesnt exist
+    createPersonalBest(userId, exerciseId, repNo);
+  } else {
+    updDataOnSupabase({
+      tableName: "person_best",
+      updParams: { total_reps: personalBestSpecificExercise.total_reps + repNo },
+      doubleFilter: [
+        { col: "person_id", value: userId },
+        { col: "exercise_id", value: exerciseId },
+      ],
+    });
+  }
 
-  updDataOnSupabase({
-    tableName: "person_best",
-    updParams: { total_reps: personalBestSpecificExercise.total_reps + repNo },
-    doubleFilter: [
-      { col: "person_id", value: userId },
-      { col: "exercise_id", value: exerciseId },
-    ],
-  });
 };
 
 // update  person_achievements
