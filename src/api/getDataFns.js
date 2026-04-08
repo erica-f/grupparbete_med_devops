@@ -95,7 +95,7 @@ export const getUserAchievements = async (userId) => {
     filter: { col: "person_id", value: userId },
     selectParams: `achieved_date, 
                   persons(name), 
-                  achievements(name, description, requirement_type,bronze, silver, gold, 
+                  achievements(id, name, description, requirement_type,bronze, silver, gold, 
                     exercises(name,description,
                       person_best(total_reps)))`,
   });
@@ -106,7 +106,7 @@ export const getPersonalBest = async (userId) => {
   return await getDataFromSupabase({
     tableName: "person_best",
     filter: { col: "person_id", value: userId },
-    selectParams: `person_id, exercise_id, persons(name), exercises(name), rep_no, achieved_at`,
+    selectParams: `person_id, exercise_id, persons(name), exercises(name), rep_no, total_reps, achieved_at`,
   });
 };
 
