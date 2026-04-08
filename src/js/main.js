@@ -1,4 +1,4 @@
-import { chooseUserHTML } from "./homepage";
+import { chooseUserHTML } from "./homepage.js";
 
 chooseUserHTML();
 
