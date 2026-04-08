@@ -1,6 +1,5 @@
 import { getExercises, getReps, getUser } from "../api/getDataFns.js";
 import { updTotalReps, updUserLvl } from "../api/updDataFns.js";
-import { updateStreak } from "./achievements.js";
 
 let totalNumberOfExercises = 0;
 let exerciseSettings = JSON.parse(localStorage.getItem("exerciseSettings")) || [];
