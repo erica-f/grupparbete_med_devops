@@ -134,6 +134,18 @@ describe("training mock", () => {
         expect(repSets[1].id).toBe(settings.selectedExercises[1].id.toString());
         expect(exerciseCards[0].querySelector(".exercise-header h4").textContent).toBe(settings.selectedExercises[0].name);
     });
+
+     test('Clicking klar updates the progress and saves to session storage', async () => {
+        let settings = await getData();
+        const { populateWorkout } = await import("../../src/js/training.js");
+        populateWorkout();
+        let exerciseCards = document.querySelectorAll(".exercise");
+        exerciseCards[0].querySelector(".completed").click();
+        expect(exerciseCards[0].querySelector(".completed").checked).toBe(true);
+        expect(document.getElementById("progress-percent").textContent).toBe('50%');
+        expect(document.getElementById("exercises-completed").textContent).toBe('1');
+        expect(sessionStorage.getItem("completedExercises")).toBe(JSON.stringify(["1"]));
+    });
 });
 
 
