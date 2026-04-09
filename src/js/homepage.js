@@ -74,11 +74,6 @@ export const choosetrainingConditionsHTML = (u) => {
   header.style.textAlign = "center";
   container.append(header);
 
-  const brand = document.createElement("div");
-  brand.className = "text-brand";
-  brand.innerText = "FitParents";
-  header.append(brand);
-
   const backBtn = document.createElement("div");
   backBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left back-btn">
                         <path d="m12 19-7-7 7-7"></path>
@@ -412,7 +407,7 @@ export const chooseUserHTML = async () => {
 
   const title = document.createElement("div");
   title.innerHTML =
-    "<h2>Välkommen till FitParent!</h2></br><h3>Vem ska träna?</h3>";
+    "<h2>Välkommen till FitParents!</h2></br><h3>Vem ska träna?</h3>";
   headerWrap.append(title);
 
   // ---------------- USER LIST ----------------
