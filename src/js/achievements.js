@@ -34,8 +34,7 @@ export function getStatus(achievement, userProgress) {
 }
 
 export const getUserStats = async (userId) => {
-    const personalBest = await getPersonalBest(userId);
-
+    const personalBest = (await getPersonalBest(userId)) || [];
     const statsLookup = {};
     personalBest.forEach(pb => {
         statsLookup[pb.exercise_id] = pb.total_reps;
@@ -259,13 +258,17 @@ function openAchievementModal(id) {
     modal.classList.add('modal--open');
 }
 
+const modalContent = document.querySelector('.modal-content')
+
 function closeModal() {
     modal.classList.remove('modal--open');
 }
 
 if (modal) {
     modal.addEventListener('click', (event) => {
-        if (event.target === modal) closeModal();
+        if (!modalContent.contains(event.target)) {
+            closeModal();
+        } 
     });
 }
 
@@ -309,4 +312,20 @@ export async function initAchievements(userId) {
     }
 }
 
-initAchievements(3);
+async function startApp() {
+    try {
+        const data = JSON.parse(localStorage.getItem("fitParents"));
+        
+        if (data && data.user && data.user.id) {
+            const userId = data.user.id;
+            console.log('Startar med userId:', userId)
+            await initAchievements(userId);
+        } else {
+            console.warn("Inget användar-ID hittat i exerciseSettings.");
+        }
+    } catch (err) {
+        console.error("Kunde inte läsa från localStorage:", err);
+    }
+}
+
+startApp();
