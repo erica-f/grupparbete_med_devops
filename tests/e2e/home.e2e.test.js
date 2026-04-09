@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { deleteUser } from "../../src/api/deleteDataFns";
 
 // prompt: create e2e tests for homepage.js, exclude unit and integration tests
 test.describe("homepage e2e", () => {
@@ -27,5 +28,8 @@ test.describe("homepage e2e", () => {
 
     await page.locator("#trainingBtn").click();
     await expect(page).toHaveURL(/training/);
+    const storage = await page.evaluate(() => ({ ...localStorage }));
+    const user = JSON.parse(storage.fitParent).user.id;
+    await deleteUser(user);
   });
 });
