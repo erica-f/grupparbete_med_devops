@@ -1,13 +1,19 @@
 import { test, expect } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/training');
-  await page.evaluate(() => localStorage.setItem('storeExerciseSettings', '5, 5, false, true, false'));
+  await page.addInitScript(() => {
+    localStorage.setItem(
+      "exerciseSettings",
+      JSON.stringify({ user: 5, time: 5, gym: false, equipment: true, children: false })
+    );
+  });
+  await page.goto("/training");
 });
 
 test('Load sections and exercises on start', async ({ page }) => {
-    const localStorageData = await page.evaluate(() => localStorage.getItem('storeExerciseSettings'));
-    expect(localStorageData).toBe('5, 5, false, true, false');
+    const localStorageData = await page.evaluate(() => localStorage.getItem('exerciseSettings'));
+    const parsedData = await JSON.parse(localStorageData);
+    expect(parsedData).toEqual({ "user": 5, "time": 5, "gym": false, "equipment": true, "children": false });
     await expect(page).toHaveTitle('Dagens pass');
     await expect(page.locator('.page-title')).toBeVisible();
     await expect(page.locator('#exercises')).toBeVisible();
@@ -21,9 +27,9 @@ test('Load sections and exercises on start', async ({ page }) => {
 });
 
 test('Marking a checkbox done updates the progress meter and saves a session storage', async ({ page }) => {
-   let completed = page.locator('#checkbox-1');
-   completed.click();
-   await expect(completed).toBeChecked();
+    let completed = page.locator('#checkbox-1');
+    completed.click();
+    await expect(completed).toBeChecked();
     await expect(page.locator('#progress-percent')).toHaveText('50%');
     await expect(page.locator('#exercises-completed')).toHaveText('1');
     let sessionStorageData = await page.evaluate(() => sessionStorage.getItem('completedExercises'));
@@ -40,7 +46,7 @@ test('Marking a checkbox done updates the progress meter and saves a session sto
 test('Clicking exchange exercise creates a list of exercises, and selecting one updates the correct exercise card', async ({ page }) => {
     let exchangeButton = page.locator('#exercise-1');
     exchangeButton.click();
-    
+
     let exchangeOptionsContainer = page.locator('#exchange-options-1');
 
     let exchangeOption = exchangeOptionsContainer.locator('.exchange-option');
@@ -51,7 +57,7 @@ test('Clicking exchange exercise creates a list of exercises, and selecting one 
     await expect(exchangeOption.nth(3)).toBeVisible();
 
     exchangeOption.first().click();
-  
+
     await expect(exchangeOptionsContainer).not.toBeVisible();
     await expect(page.locator('#exercise-card-1').getByRole('heading')).toHaveText(exchangeOptionText);
     await expect(exchangeOption.first()).not.toBeVisible();

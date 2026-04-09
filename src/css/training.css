@@ -1,18 +1,35 @@
-#filter,
 #percent-text {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
 }
 
-#filter,
 #progress,
 #complete-training {
   margin: 1.5rem 0;
 }
 
-.filter-dropdown {
-  color: var(--color-green);
+.progress-wrapper {
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.progress-label {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+#progress-bar {
+  border-radius: var(--radius-lg);
+}
+
+#progress-done {
+  border-radius: var(--radius-lg);
+  padding: 10px;
+  width: 0%;
+  background-color: var(--color-accent);
 }
 
 .exercise {
@@ -25,6 +42,41 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  justify-self: end;  
+  font-size: var(--text-sm);
+  align-items: end;
+
+}
+.exercise-card {
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5) var(--space-6);
+  gap: var(--space-3);
+  box-shadow: var(--shadow-card);
+  margin: var(--space-6);
+}
+
+.exercise-header {
+  margin-bottom: var(--space-3);
+}
+
+.rep-input {
+  width: 3.5rem;
+  height: 2.5rem;
+  background-color: var(--color-bg-input);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  text-align: center;
+  cursor: pointer;
+  transition: background-color var(--transition-base);
+  margin-right: 5px;
+}
+
+.rep-input:hover {
+  background-color: var(--color-green-muted);
 }
 
 .rep-set {
@@ -35,13 +87,6 @@
 
 .input-3 {
   display: none;
-}
-
-.exercise-right {
-  font-size: var(--text-sm);
-  justify-self: end;
-  display: flex;
-  align-items: end;
 }
 
 .completed {
@@ -68,7 +113,7 @@
   left: 200;
   top: 40;
   z-index: 10;
-  width: 600px;
+  width: var(--content-max-width);
   max-height: 500px;
   overflow-y: scroll;
   box-shadow: var(--shadow-card-hover) !important;
@@ -103,7 +148,7 @@
   position: fixed;
   top: 100px;
   height: 300px;
-  width: 600px;
+  width: var(--content-max-width);
   box-shadow: var(--shadow-card-hover);
   flex-direction: column;
   justify-content: center;
@@ -111,64 +156,5 @@
   z-index: 10;
 }
 
-/* ------------------------------------------------------------
-   12. Övningskort med checkbox (Training)
-   ------------------------------------------------------------ */
 
-.exercise-card {
-  background-color: var(--color-bg-card);
-  border-radius: var(--radius-xl);
-  padding: var(--space-5) var(--space-6);
-  gap: var(--space-3);
-  box-shadow: var(--shadow-card);
-  margin: var(--space-6);
-}
 
-.exercise-header {
-  margin-bottom: var(--space-3);
-}
-
-.rep-input {
-  width: 3.5rem;
-  height: 2.5rem;
-  background-color: var(--color-bg-input);
-  border: none;
-  border-radius: var(--radius-md);
-  font-size: var(--text-base);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-primary);
-  text-align: center;
-  cursor: pointer;
-  transition: background-color var(--transition-base);
-  margin-right: 5px;
-}
-
-.rep-input:hover {
-  background-color: var(--color-green-muted);
-}
-
-/* ------------------------------------------------------------
-   9. Progressbar
-   ------------------------------------------------------------ */
-.progress-wrapper {
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
-}
-
-.progress-label {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  display: flex;
-  justify-content: space-between;
-}
-
-#progress-bar {
-  border-radius: var(--radius-lg);
-}
-
-#progress-done {
-  border-radius: var(--radius-lg);
-  padding: 10px;
-  width: 0%;
-  background-color: var(--color-accent);
-}

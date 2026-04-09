@@ -1,21 +1,8 @@
 import { getExercises, getReps, getUser } from "../api/getDataFns.js";
 import { getRandomExercises, numberOfExercises, filterExerciseList } from "./training-modular.js";
 
-storeExerciseSettings(5, 5, false, true, false);
-
-// let totalNumberOfExercises = 0;
+// // let totalNumberOfExercises = 0;
 export let exerciseSettings = JSON.parse(localStorage.getItem("exerciseSettings")) || [];
-
-function storeExerciseSettings(user, time, children, equipment, gym) {
-    let exerciseSettings = {
-        user: user,
-        time: time,
-        gym: gym,
-        equipment: equipment,
-        children: children
-    };
-    localStorage.setItem("exerciseSettings", JSON.stringify(exerciseSettings));
-}
 
 /* Fetch the exercises and create the cards on page load */
 
@@ -37,7 +24,6 @@ export async function getData() {
         selectedExercises: selectedExercises,
         getRepAmount: getRepAmount,
     }
-    console.log(savedsettings);
     return savedsettings;
 }
 

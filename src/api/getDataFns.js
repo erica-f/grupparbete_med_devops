@@ -71,6 +71,7 @@ export const getExercises = async () => {
   return await getDataFromSupabase({
     tableName: "exercises",
     selectParams: `id, name, description, how_to, with_kids, at_gym,  exercise_equipment(equipment(name, description)), bodyparts(bodypart)`,
+    orderBy: { col: "name", asc: true },
   });
 };
 
