@@ -17,6 +17,16 @@ const iconMap = {
     "vikt": "weight-icon"
 }
 
+function getSvgPath() {
+    const existingIcon = document.querySelector('use[href*="achievements.svg"]');
+    let path = "";
+
+    if (existingIcon) {
+        path = existingIcon.getAttribute('href').split('#')[0];
+    }
+    return path || 'img/icons/achievements.svg';
+}
+
 export const getIconId = (iconName) => iconMap[iconName] || "award-icon";
 
 export function getNextGoal(ach, status) {
@@ -88,13 +98,14 @@ function renderProgress(next, current) {
 function renderAchievement(ach) {
     const iconId = getIconId(ach.icon);
     const next = getNextGoal(ach, ach.status);
+    const svgPath = getSvgPath();
 
     return `
         <div class="achievement-card ${ach.status === 'locked' ? 'achievement-card--locked' : ''}"
             data-achievement-id="${ach.id}">
             <div class="icon-circle">
                 <svg class="icon ${ach.status}" width="24" height="24">
-                    <use href="img/icons/achievements.svg#${iconId}"></use>
+                    <use href="${svgPath}#${iconId}"></use>
                 </svg>
             </div>
             <p class="achievement-card__name">${ach.name}</p>
@@ -226,6 +237,7 @@ function formateDate(isoString) {
 }
 
 function openAchievementModal(id) {
+    const svgPath = getSvgPath();
     const ach = totalAchievements.find(a => a.id === id);
     if (!ach) return;
 
@@ -234,7 +246,7 @@ function openAchievementModal(id) {
 
     document.getElementById('modal-icon-container').innerHTML = `
         <svg class="icon ${ach.status}" width="80" height="80">
-            <use href="img/icons/achievements.svg#${iconId}"></use>
+            <use href="${svgPath}#${iconId}"></use>
         </svg>
     `;
 
