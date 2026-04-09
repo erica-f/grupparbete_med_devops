@@ -259,13 +259,17 @@ function openAchievementModal(id) {
     modal.classList.add('modal--open');
 }
 
+const modalContent = document.querySelector('.modal-content')
+
 function closeModal() {
     modal.classList.remove('modal--open');
 }
 
 if (modal) {
     modal.addEventListener('click', (event) => {
-        if (event.target === modal) closeModal();
+        if (!modalContent.contains(event.target)) {
+            closeModal();
+        } 
     });
 }
 
@@ -308,5 +312,3 @@ export async function initAchievements(userId) {
         console.error("Kunde inte ladda achievements:", error);
     }
 }
-
-initAchievements(3);
