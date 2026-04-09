@@ -1,0 +1,45 @@
+.userpage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.back-btn {
+  display: flex;
+  align-self: start;
+}
+
+.salmon {
+  color: var(--color-accent);
+}
+.green {
+  color: var(--color-green);
+}
+.bold {
+  font-weight: bold;
+}
+.option-grid input:checked + .option-card .salmon,
+.option-grid input:checked + .option-card .green,
+.option-grid input:checked + .option-card {
+  background-color: var(--color-green);
+  color: var(--color-text-on-green);
+}
+
+.option-grid input:checked + .option-card .option-card__label,
+.option-grid input:checked + .option-card .option-card__sublabel {
+  color: var(--color-text-on-green);
+}
+
+.option-grid input:checked + .option-card .icon-circle {
+  background-color: var(--color-green-light);
+  color: var(--color-text-on-green);
+}
+
+input {
+  width: 100%;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border: none;
+  outline: none;
+  font-size: var(--text-base);
+}

@@ -2,10 +2,11 @@
 <html lang="sv">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitParents</title>
-    <link rel="stylesheet" href="src/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="src/css/style.css">
+  <link rel="stylesheet" href="src/css/home.css">
+  <title>FitParents</title>
 </head>
 
 <body>
@@ -22,11 +23,155 @@
             </nav>
         </div>
     </header>
-    <div class="page">
-        <div class="container">
-            <h1 class="page-title">Välkommen till FitParents</h1>
+  <main  id="homepage">
+  </main>
+  
+  <!-- psudo code user choice -->
+  <!-- <div class="page">
+    <div class="container stack stack--lg">
+
+      <div class="stack stack--sm" style="text-align: center;">
+        <h2>Vem ska träna?</h2>
+      </div>
+
+
+      <div class="section">
+        <div class="section-label">Välj profil</div>
+
+        <div class="option-grid">
+          <div class="option-card">
+            <div class="icon-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-user text-primary-foreground">
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="option-card__label">Användarnamn</div>
+          </div>
         </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Ny profil</div>
+
+        <div class="card stack stack--sm">
+          <input type="text" placeholder="Skriv ditt namn..." class="card card--white" />
+
+          <button class="btn btn--primary">
+            Skapa ny profil
+          </button>
+        </div>
+      </div>
+
     </div>
+  </div> -->
+
+  <!-- training choices -->
+  <!-- <div class="page">
+    <div class="container stack stack--lg">
+
+      <div class="stack stack--sm" style="text-align: center;">
+        <div class="text-brand">FitParents</div>
+        <h2>Hur mycket tid har du idag?</h2>
+        <p class="text-muted">
+          Vi anpassar träningen efter din vardag – oavsett hur mycket tid, energi eller om barnen är med.
+        </p>
+      </div>
+
+      <div class="section">
+        <div class="section-label">⏱ Hur länge kan du träna?</div>
+
+        <div class="option-grid option-grid--3">
+          <input type="radio" name="time" id="t10" class="visually-hidden">
+          <label for="t10" class="option-card">10 min</label>
+
+          <input type="radio" name="time" id="t20" class="visually-hidden" checked>
+          <label for="t20" class="option-card">20 min</label>
+
+          <input type="radio" name="time" id="t30" class="visually-hidden">
+          <label for="t30" class="option-card">30 min</label>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">🏠 Var vill du träna?</div>
+
+        <div class="option-grid">
+          <input type="radio" name="location" id="home" class="visually-hidden" checked>
+          <label for="home" class="option-card">
+            <div class="icon-circle icon-circle--lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                <path
+                  d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z">
+                </path>
+              </svg>
+            </div>
+            <div class="option-card__label">Hemma</div>
+            <div class="option-card__sublabel">Träna i vardagsrummet</div>
+          </label>
+
+          <input type="radio" name="location" id="gym" class="visually-hidden">
+          <label for="gym" class="option-card">
+            <div class="icon-circle icon-circle--lg">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M14.4 14.4 9.6 9.6"></path>
+                <path
+                  d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z">
+                </path>
+              </svg>
+            </div>
+            <div class="option-card__label">På gymmet</div>
+            <div class="option-card__sublabel">Med full utrustning</div>
+          </label>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">👶 Har du barn med dig?</div>
+
+        <div class="option-grid">
+          <input type="radio" name="kids" id="kids-yes" value="yes" class="visually-hidden">
+          <label for="kids-yes" class="option-card">
+            <div class="icon-circle icon-circle--lg icon-circle--salmon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M9 12h.01"></path>
+                <path d="M15 12h.01"></path>
+                <path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"></path>
+              </svg>
+            </div>
+            <div class="option-card__label">Ja, barnen är med</div>
+            <div class="option-card__sublabel">Vi anpassar övningarna</div>
+          </label>
+
+          <input type="radio" name="kids" id="kids-no" value="no" class="visually-hidden" checked>
+          <label for="kids-no" class="option-card">
+            <div class="icon-circle icon-circle--lg icon-circle--salmon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="option-card__label">Nej, jag tränar själv</div>
+            <div class="option-card__sublabel">Fokustid för dig</div>
+          </label>
+        </div>
+      </div>
+
+      <button class="btn btn--primary">
+        Skapa mitt pass ✨
+      </button>
+
+    </div>
+  </div> -->
 </body>
+<script type="module" src="src/js/main.js"></script>
 
 </html>
+
