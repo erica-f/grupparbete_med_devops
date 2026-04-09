@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "build": "vite build",
     "test": "vitest run --coverage && npm run test:e2e",
     "test:e2e": "vite build && npx playwright test",
     "lint": "eslint src/",
