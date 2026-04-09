@@ -29,7 +29,7 @@ test.describe("homepage e2e", () => {
     await page.locator("#trainingBtn").click();
     await expect(page).toHaveURL(/training/);
     const storage = await page.evaluate(() => ({ ...localStorage }));
-    const user = JSON.parse(storage.fitParent).user.id;
+    const user = JSON.parse(storage.fitParents).user.id;
     await deleteUser(user);
   });
 });
