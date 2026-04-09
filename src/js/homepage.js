@@ -57,6 +57,7 @@ export const checkForm = () => {
 };
 
 export const choosetrainingConditionsHTML = (u) => {
+  window.scrollTo(0, 0);
   const homepageBody = document.getElementById("homepage");
   // page
   const page = document.createElement("div");
