@@ -101,7 +101,6 @@ function postLoading() {
             updateProgress();
         });
     });
-  });
 }
 
 function createAltExercises(selectedExercise) {
