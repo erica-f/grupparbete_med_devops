@@ -134,11 +134,6 @@ function createEventListeners(selectedExercise) {
     closeBtn.addEventListener("click", function (e) {
         e.currentTarget.parentElement.style.display = "none";
     });
-  });
-  //Close exchange option
-  closeBtn.addEventListener("click", function (e) {
-    e.currentTarget.parentElement.style.display = "none";
-  });
 }
 
 function updateProgress() {
