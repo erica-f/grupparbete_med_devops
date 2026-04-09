@@ -94,7 +94,7 @@ function renderAchievement(ach) {
             data-achievement-id="${ach.id}">
             <div class="icon-circle">
                 <svg class="icon ${ach.status}" width="24" height="24">
-                    <use href="img/icons/achievements.svg#${iconId}"></use>
+                    <use href="/img/icons/achievements.svg#${iconId}"></use>
                 </svg>
             </div>
             <p class="achievement-card__name">${ach.name}</p>
@@ -234,7 +234,7 @@ function openAchievementModal(id) {
 
     document.getElementById('modal-icon-container').innerHTML = `
         <svg class="icon ${ach.status}" width="80" height="80">
-            <use href="img/icons/achievements.svg#${iconId}"></use>
+            <use href="/img/icons/achievements.svg#${iconId}"></use>
         </svg>
     `;
 
