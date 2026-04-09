@@ -12,38 +12,40 @@
 
 :root {
   /* Färger – Bakgrund */
-  --color-bg: #f8f8f7; /* Sidans bakgrund, varm off-white */
-  --color-bg-card: #e8ede8; /* Kort och paneler, ljusgrön-grå */
-  --color-bg-card-hover: #dfe6df; /* Kort hover-state */
+  --color-bg: #f9f9f7; /* Off-white */
+  --color-bg-card: #eef1eb; /* Kort och paneler, sage-tintad */
+  --color-bg-card-hover: #e5e9e2; /* Kort hover-state */
   --color-bg-input: #ffffff; /* Inputfält och räknare */
 
-  /* Färger – Gröna (primär) */
-  --color-green-light: #a8c5a8; /* Ikoner, subtila accenter */
-  --color-green: #7a9e7e; /* Primär grön, aktiva tabbar, knappar */
-  --color-green-dark: #4a6b4e; /* Hover på primärfärg */
-  --color-green-muted: #c5d9c5; /* Disabled-states, inaktiva badges */
+  /* Färger – Sage green (primär) */
+  --color-green-light: #b8c8b0; /* Ikoner, subtila accenter */
+  --color-green: #88a47c; /* Primär sage green – knappar, aktiva tabbar */
+  --color-green-dark: #6d8363; /* Hover på primärfärg */
+  --color-green-muted: #dbe4d8; /* Disabled-states, inaktiva badges */
 
-  /* Färger – Salmon/Orange (sekundär accent) */
-  --color-accent: #f08468; /* CTA-knappar, "Skapa mitt pass" */
-  --color-accent-hover: #e06e50; /* Hover på CTA */
-  --color-accent-light: #fad4c8; /* Mjuk bakgrund för accent-element */
+  /* Färger – Soft coral (sekundär accent) */
+  --color-accent: #ff8e72; /* CTA-knappar, achievements */
+  --color-accent-hover: #e8745a; /* Hover på CTA */
+  --color-accent-light: #ffe0d8; /* Mjuk bakgrund för accent-element */
 
   /* Färger – Progress/Varning */
   --color-progress: #e8604a; /* Progressbar */
 
   /* Färger – Text */
-  --color-text-primary: #2c3535; /* Rubriker, primär text */
-  --color-text-body: #4a5e4a; /* Brödtext */
-  --color-text-muted: #8a9e8a; /* Sekundär text, metadata */
-  --color-text-disabled: #b0bfb0; /* Inaktivt innehåll */
+  --color-text-primary: #2d3436; /* Dark slate – rubriker, primär text */
+  --color-text-body: #4a5568; /* Brödtext */
+  --color-text-muted: #8e9ba8; /* Sekundär text, metadata */
+  --color-text-disabled: #b2c0bc; /* Inaktivt innehåll */
   --color-text-on-green: #ffffff; /* Text på grön bakgrund */
-  --color-text-on-accent: #ffffff; /* Text på salmon-bakgrund */
+  --color-text-on-accent: #ffffff; /* Text på coral-bakgrund */
 
   /* Färger – Logotyp */
-  --color-brand: #6b8f6e; /* "FitParents" logotype */
+  --color-brand: #88a47c; /* "FitParents" logotype */
 
   /* Typografi */
-  --font-sans: "Quicksand", sans-serif;
+  --font-heading: "Quicksand", sans-serif; /* Rubriker */
+  --font-body: "Inter", sans-serif; /* Brödtext */
+  --font-sans: "Quicksand", sans-serif; /* Bakåtkompatibilitet */
 
   --text-xs: 0.75rem; /* 12px – etiketter, badges */
   --text-sm: 0.875rem; /* 14px – sekundär text, metadata */
@@ -85,10 +87,10 @@
 
   /* Skuggor */
   --shadow-card:
-    0 1px 3px rgba(45, 58, 46, 0.06), 0 1px 2px rgba(45, 58, 46, 0.04);
+    0 1px 3px rgba(136, 164, 124, 0.12), 0 1px 2px rgba(136, 164, 124, 0.08);
   --shadow-card-hover:
-    0 4px 12px rgba(45, 58, 46, 0.1), 0 2px 4px rgba(45, 58, 46, 0.06);
-  --shadow-btn: 0 2px 8px rgba(240, 132, 104, 0.3);
+    0 4px 12px rgba(136, 164, 124, 0.18), 0 2px 4px rgba(136, 164, 124, 0.10);
+  --shadow-btn: 0 2px 8px rgba(255, 142, 114, 0.35);
 
   /* Övergångar */
   --transition-fast: 150ms ease;
@@ -191,7 +193,7 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: var(--text-base);
   font-weight: var(--font-weight-normal);
   line-height: var(--leading-normal);
@@ -234,7 +236,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-sans);
+  font-family: var(--font-heading);
   color: var(--color-text-primary);
   line-height: var(--leading-tight);
   font-weight: var(--font-weight-bold);
