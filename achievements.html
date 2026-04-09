@@ -29,8 +29,8 @@
                 </div>
                 <div>
                     <span class="streak-banner__label">Hittills har du gjort</span>
-                    <h2 class="streak-banner__value">0 pass i rad 🔥</h2>
-                    <p class="streak-banner__sub">Fantastiskt jobbat - du håller igång!</p>
+                    <h2 id="user-streak" class="streak-banner__value"></h2>
+                    <p id="streak-sub" class="streak-banner__sub"></p>
                 </div>
             </div>
             <section class="section-container">
@@ -53,6 +53,15 @@
                 </div>
             </section>
             <p class="section-label">Varje litet steg räknas ❤️</p>
+        </div>
+        <div id="achievement-modal" class="modal">
+            <div class="modal-content">
+                <div id="modal-icon-container"></div>
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
+                <p id="modal-date"></p>
+                <div id="modal-progress-details"></div>
+            </div>
         </div>
     </div>
     <script src="src/js/achievements.js" type="module"></script>

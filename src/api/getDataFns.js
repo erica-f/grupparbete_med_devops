@@ -92,7 +92,9 @@ export const getUserAchievements = async (userId) => {
   return await getDataFromSupabase({
     tableName: "person_achievements",
     filter: { col: "person_id", value: userId },
-    selectParams: `achieved_date, 
+    selectParams: `achievement_id,
+                  achieved_date,
+                  level, 
                   persons(name), 
                   achievements(id, name, description, requirement_type,bronze, silver, gold, 
                     exercises(name,description,
