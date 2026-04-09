@@ -3,20 +3,27 @@ import { exerciseSettings, getData } from "./training-data.js";
 import { markExerciseCompleted, displayWorkoutComleted, checkCompletedExercises } from "./training-modular.js";
 
 let settings = await getData();
-populateWorkout();
+export function testFunction() {
+    document.getElementById("total-exercises").textContent = "1";
+}
 
-function populateWorkout(exerciseId, selectedExercise) {
-    let card = "";
+  if (document.readyState === "loading") {
+    window.addEventListener("DOMContentLoaded", populateWorkout);
+  } else {
+    populateWorkout();
+  }
+
+export function populateWorkout(exerciseId, selectedExercise) {
+    let card = ``;
     let noOfCards = settings.totalNumberOfExercises;
     let selectedExercises = settings.selectedExercises;
     let reps = settings.getRepAmount;
-    let indexOfOld = 0;
+
     if (exerciseId != null) {
         let newExercise = settings.filteredList.filter(l => l.id == exerciseId);
         noOfCards = 1;
         selectedExercises = newExercise;
-        indexOfOld = selectedExercise - 1;
-        settings.selectedExercises.splice(indexOfOld, 1, newExercise[0]);
+        settings.selectedExercises.splice(selectedExercise - 1, 1, newExercise[0]);
     }
     sessionStorage.setItem("exercisesList", JSON.stringify(settings.selectedExercises));
 
@@ -67,7 +74,6 @@ function populateWorkout(exerciseId, selectedExercise) {
     } else {
         document.getElementById("exercises").innerHTML = card;
     }
-
     if (settings.userData.lvl > 4) {
         let thirdCounter = Array.from(document.querySelectorAll(".input-3"));
         thirdCounter.forEach(element => {

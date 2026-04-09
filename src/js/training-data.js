@@ -37,6 +37,7 @@ export async function getData() {
         selectedExercises: selectedExercises,
         getRepAmount: getRepAmount,
     }
+    console.log(savedsettings);
     return savedsettings;
 }
 
