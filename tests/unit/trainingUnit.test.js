@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeEach } from "vitest";
+import { describe, test, expect } from "vitest";
 import { numberOfExercises, getRandomExercises, filterExerciseList } from "../../src/js/training-modular.js";
 
 describe("training functions", () => {
