@@ -40,7 +40,7 @@ export function populateWorkout(exerciseId, selectedExercise) {
                         <div class="exercise-header">
                             <h4 >${selectedExercises[i].name}</h4>
                             <p class="text-muted">${selectedExercises[i].description}</p>
-                            <p class="text-brand">${settings.userData.lvl < 4 ? 2 : 3} set x ${repAmount.amount} ${timeOrRep}</p>
+                            <p class="text-brand">${settings.userData.lvl > 4 ? 3 : 2} set x ${repAmount.amount} ${timeOrRep}</p>
                         </div>
                         <p class="text-muted">Avklarade ${timeOrRep} per set</p>
                         <div class="rep-set" id="${selectedExercises[i].id}">
