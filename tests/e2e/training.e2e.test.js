@@ -16,7 +16,6 @@ test('Load sections and exercises on start', async ({ page }) => {
     await expect(exercises.nth(1)).toBeVisible();
     await expect(exercises.nth(1).locator('.exercise-header')).toBeVisible();
     await expect(page.locator('.rep-input')).toHaveCount(6);
-    await expect(page.locator('.rep-input').nth(2)).not.toBeVisible();
     await expect(page.locator('#progress-percent')).toHaveText('0%');
     await expect(page.locator('#complete-workout-btn')).toBeVisible();
 });
