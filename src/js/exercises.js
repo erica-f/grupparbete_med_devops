@@ -6,14 +6,14 @@ const BODYPART_GROUPS = {
     helkropp: ['Helkropp'],
 };
 
-const exerciseBelongsToGroup = (exercise, group) => {
+export const exerciseBelongsToGroup = (exercise, group) => {
     if (!exercise.bodyparts) return false;
     const raw = Array.isArray(exercise.bodyparts) ? exercise.bodyparts : [exercise.bodyparts];
     const bodyparts = raw.map((bp) => bp.bodypart);
     return BODYPART_GROUPS[group].some((part) => bodyparts.includes(part));
 };
 
-const getEquipmentItems = (exercise) => {
+export const getEquipmentItems = (exercise) => {
     const raw = exercise.exercise_equipment;
     if (!raw) return [];
     return (Array.isArray(raw) ? raw : [raw]).map((e) => e.equipment).filter(Boolean);
@@ -76,7 +76,7 @@ const createExerciseCard = (exercise) => {
     return card;
 };
 
-const renderExercises = (exercises, group) => {
+export const renderExercises = (exercises, group) => {
     const container = document.getElementById('exercise_cards');
     container.innerHTML = '';
 
