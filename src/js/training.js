@@ -3,9 +3,6 @@ import { exerciseSettings, getData } from "./training-data.js";
 import { markExerciseCompleted, displayWorkoutComleted, checkCompletedExercises } from "./training-modular.js";
 
 let settings = await getData();
-export function testFunction() {
-    document.getElementById("total-exercises").textContent = "1";
-}
 
   if (document.readyState === "loading") {
     window.addEventListener("DOMContentLoaded", populateWorkout);
