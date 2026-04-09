@@ -79,7 +79,8 @@ test('modal is clickable and showable', async ({ page }) => {
     await firstCard.click();
 
     const modal = page.locator('#achievement-modal');
-    expect(modal).toBeVisible();
+    await expect(modal).toHaveClass(/modal--open/);
+    await expect(modal).toBeVisible();
     await expect(page.locator('#modal-title')).toContainText(cardName1);
 
     const description = page.locator('#modal-description');
@@ -87,8 +88,8 @@ test('modal is clickable and showable', async ({ page }) => {
     
     const modalDate = page.locator('#modal-date');
     const modalProgress = page.locator('#modal-progress-details');
-    expect(modalDate).toContainText('1 januari 2000');
-    expect(modalProgress).toContainText('25 av 30 för Guld');
+    await expect(modalDate).toContainText('1 januari 2000');
+    await expect(modalProgress).toContainText('25 av 30 för Guld');
 
     await modal.click({ position: { x: 5, y: 5 }, force: true });
     await expect(modal).toBeHidden();
