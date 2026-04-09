@@ -1,12 +1,11 @@
 import { describe, test, expect, beforeEach, vi } from "vitest";
-import { chooseUserHTML } from "../../src/js/homepage.js";
 import { getUsers } from "../../src/api/getDataFns.js";
 
 describe("homepage integration tests", () => {
   beforeEach(() => {
     vi.resetModules();
     vi.stubGlobal("fetch", vi.fn());
-    vi.mock("../../src/api/getDataFns.js", () => ({
+    vi.mock(import("../../src/api/getDataFns.js"), async () => ({
       getUsers: vi.fn(),
     }));
     fetch.mockResolvedValue({
@@ -24,10 +23,11 @@ describe("homepage integration tests", () => {
       { id: 1, name: "tester1" },
       { id: 2, name: "tester2" },
     ];
+    const { chooseUserHTML } = await import("../../src/js/homepage.js");
 
     getUsers.mockResolvedValue(users);
 
-    await chooseUserHTML();
+    chooseUserHTML();
 
     const userOptions = document.querySelectorAll(".option-card");
 
@@ -36,13 +36,14 @@ describe("homepage integration tests", () => {
 
   test("should save user choice and preferences together", async () => {
     const users = [{ id: 1, name: "tester1" }];
+    const { chooseUserHTML } = await import("../../src/js/homepage.js");
 
     fetch.mockResolvedValueOnce({
       ok: true,
       json: async () => users,
     });
 
-    await chooseUserHTML();
+    chooseUserHTML();
 
     const userSelect = document.querySelector("[data-user-id='1']");
     expect(userSelect).toBeTruthy();
@@ -54,7 +55,7 @@ describe("homepage integration tests", () => {
       await import("../../src/js/homepage.js");
 
     const user = { id: 1, name: "tester1" };
-    await choosetrainingConditionsHTML(user);
+    choosetrainingConditionsHTML(user);
 
     const submitBtn = document.getElementById("trainingBtn");
     expect(submitBtn).toBeTruthy();
