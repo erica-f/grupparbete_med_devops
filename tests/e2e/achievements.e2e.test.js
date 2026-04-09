@@ -1,6 +1,19 @@
 import { test, expect } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+        const mockSettings = {
+            is_active: true,
+            user: {
+                id: 'user-1',
+            name: 'Test', 
+            streak: 5, 
+            last_week_update: '2026-W15'
+            }
+        };
+        window.localStorage.setItem("fitParents", JSON.stringify(mockSettings));
+    });
+
     await page.route('**/rest/v1/achievements*', async route => {
         await route.fulfill({
             status: 200,
@@ -27,19 +40,28 @@ test.beforeEach(async ({ page }) => {
             body: JSON.stringify([{achievements: {id: 1}, achieved_date: '2000-01-01'}])
         });
     });
+
+    await page.route('**/rest/v1/persons*', async route => {
+        await route.fulfill({
+            status: 200,
+            contentType: 'application/json',
+             body: JSON.stringify([{ id: 'user-1', name: 'Test', streak: 5, last_week_update: '2026-W15' }])
+        });
+    });
+
     await page.goto("/achievements.html");
 });
 
 test('dom is visible on page load', async ({ page }) => {
-    const backBtn = page.locator('a.btn--secondary:has(svg.lucide-arrow-left)');
     const streakBanner = page.locator('#streak-banner');
+    const streakBannerValue = page.locator('#user-streak')
     const unlocked = page.locator('#unlocked');
     const locked = page.locator('#locked');
     const modal = page.locator('#achievement-modal');
     const firstCard = page.locator('.achievement-card').first();
     const secondCard = page.locator('.achievement-card').nth(1);
 
-    await expect(backBtn).toBeVisible();
+    await expect(streakBannerValue).toContainText('5 veckor i rad');
     await expect(streakBanner).toBeVisible();
     await expect(unlocked).toBeVisible();
     await expect(locked).toBeVisible();

@@ -34,8 +34,7 @@ export function getStatus(achievement, userProgress) {
 }
 
 export const getUserStats = async (userId) => {
-    const personalBest = await getPersonalBest(userId);
-
+    const personalBest = (await getPersonalBest(userId)) || [];
     const statsLookup = {};
     personalBest.forEach(pb => {
         statsLookup[pb.exercise_id] = pb.total_reps;
@@ -312,3 +311,21 @@ export async function initAchievements(userId) {
         console.error("Kunde inte ladda achievements:", error);
     }
 }
+
+async function startApp() {
+    try {
+        const data = JSON.parse(localStorage.getItem("fitParents"));
+        
+        if (data && data.user && data.user.id) {
+            const userId = data.user.id;
+            console.log('Startar med userId:', userId)
+            await initAchievements(userId);
+        } else {
+            console.warn("Inget användar-ID hittat i exerciseSettings.");
+        }
+    } catch (err) {
+        console.error("Kunde inte läsa från localStorage:", err);
+    }
+}
+
+startApp();

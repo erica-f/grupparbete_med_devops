@@ -9,6 +9,19 @@ vi.mock("../../src/api/getDataFns.js", () => ({
 }));
 
 beforeEach(() => {
+    const localStorageMock = (() => {
+        let store = {};
+        return {
+            getItem: vi.fn(key => store[key] || null),
+            setItem: vi.fn((key, value) => { store[key] = value.toString(); }),
+            removeItem: vi.fn(key => { delete store[key]; }),
+            clear: vi.fn(() => { store = {}; })
+        };
+    })();
+    Object.defineProperty(window, 'localStorage', {
+        value: localStorageMock,
+        writable: true
+    });
     vi.resetModules();
     vi.clearAllMocks();
       document.body.innerHTML = `
@@ -78,7 +91,7 @@ describe('initAchievements integration', () => {
         const mockStats = [{ exercise_id: 10, total_reps: 25}];
         const mockClaimed = [{ achievements: { id: 1 }, achieved_date: '2000-01-01' }];
         
-        db.getUser.mockResolvedValue({ id: 'user-1', name: 'Test' });
+        db.getUser.mockResolvedValue([{ id: 'user-1', name: 'Test' }]);
         db.getAchievements.mockResolvedValue(mockAchievements);
         db.getPersonalBest.mockResolvedValue(mockStats);
         db.getUserAchievements.mockResolvedValue(mockClaimed);
@@ -106,7 +119,7 @@ describe('initAchievements integration', () => {
             { id: 1, name: 'Guld-övning', exercise_id: 1, bronze: 10, silver: 20, gold: 30},
             { id: 2, name: 'Låst-övning', exercise_id: 2, bronze: 100, silver: 200, gold: 300}
         ]);
-        db.getUser.mockResolvedValue({ id: 'user-1', name: 'Test' });
+        db.getUser.mockResolvedValue([{ id: 'user-1', name: 'Test' }]);
         db.getUserAchievements.mockResolvedValue([]);
 
         await initAchievements('user-1');
