@@ -8,6 +8,19 @@
     <link rel="stylesheet" href="src/css/achievements.css">
 </head>
 <body>
+    <header class="site-header">
+        <div class="site-header__container">
+            <a href="index.html" class="site-header__logo">FitParents</a>
+            <nav>
+                <ul class="site-header__nav">
+                    <li><a href="index.html" class="site-header__link">Hem</a></li>
+                    <li><a href="exercises.html" class="site-header__link">Övningar</a></li>
+                    <li><a href="training.html" class="site-header__link">Pass</a></li>
+                    <li><a href="achievements.html" class="site-header__link site-header__link--active">Prestationer</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <div class="page">
         <div class="container section">
             <div class="page-header">
@@ -29,8 +42,8 @@
                 </div>
                 <div>
                     <span class="streak-banner__label">Hittills har du gjort</span>
-                    <h2 class="streak-banner__value">0 pass i rad 🔥</h2>
-                    <p class="streak-banner__sub">Fantastiskt jobbat - du håller igång!</p>
+                    <h2 id="user-streak" class="streak-banner__value"></h2>
+                    <p id="streak-sub" class="streak-banner__sub"></p>
                 </div>
             </div>
             <section class="section-container">
@@ -53,6 +66,15 @@
                 </div>
             </section>
             <p class="section-label">Varje litet steg räknas ❤️</p>
+        </div>
+        <div id="achievement-modal" class="modal">
+            <div class="modal-content">
+                <div id="modal-icon-container"></div>
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
+                <p id="modal-date"></p>
+                <div id="modal-progress-details"></div>
+            </div>
         </div>
     </div>
     <script src="src/js/achievements.js" type="module"></script>

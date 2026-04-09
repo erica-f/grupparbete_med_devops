@@ -54,18 +54,15 @@ export const updUserLvl = async (userId) => {
   });
 };
 
-export const updUserStreak = async (userId) => {
-  const workoutsThisWeek = 4; //get number from LS
-  if (workoutsThisWeek >= 3) {
-    const user = await getUser(userId);
-    updDataOnSupabase({
-      tableName: "persons",
-      updParams: { streak: user.streak + 1 },
-      filter: { col: "id", value: userId },
-    });
-  } else {
-    return;
-  }
+export const updUserStreak = async (userId, newStreak, weekId) => {
+  updDataOnSupabase({
+    tableName: "persons",
+    updParams: {
+      streak: newStreak,
+      last_week_update: weekId
+    },
+    filter: { col: "id", value: userId },
+  });
 };
 
 // update person_best
@@ -108,12 +105,15 @@ export const updTotalReps = async (userId, exerciseId, repNo) => {
 };
 
 // update  person_achievements
-export const updPersonAchievement = async (userId, achievementId) => {
+export const updPersonAchievement = async (userId, achievementId, userLevel) => {
   const today = new Date().toISOString().split("T")[0];
 
   await updDataOnSupabase({
     tableName: "person_achievements",
-    updParams: { achieved_date: today },
+    updParams: { 
+      achieved_date: today,
+      level: userLevel
+    },
     doubleFilter: [
       { col: "person_id", value: userId },
       { col: "achievement_id", value: achievementId },
