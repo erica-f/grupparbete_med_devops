@@ -1,7 +1,7 @@
 import { supabase } from "./supabaseClient.js";
 
 const deleteDataFromSupabase = async ({ tableName, dataId }) => {
-  console.log("create data in table:", tableName, ", with id:", dataId);
+  console.log("delete data in table:", tableName, ", with id:", dataId);
   try {
     const { data, error } = await supabase
       .from(tableName)
