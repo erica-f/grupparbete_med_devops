@@ -21,8 +21,11 @@ const createDataToSupabase = async ({ tableName, dataObject }) => {
 
 // create data to persons
 export const createUser = async (newUser) => {
-  const newPerson = { lvl: 1, streak: 0, name: newUser };
-  await createDataToSupabase({ tableName: "persons", dataObject: newPerson });
+  const newPerson = { lvl: 1, streak: 0, name: newUser, last_week_update: "" };
+  return await createDataToSupabase({
+    tableName: "persons",
+    dataObject: newPerson,
+  });
 };
 
 // create data to person_best
@@ -40,15 +43,19 @@ export const createPersonalBest = async (userId, exerciseId, repNo) => {
 };
 
 // create personal achievement
-export const createPersonAchievement = async (userId, achievementId) => {
+export const createPersonAchievement = async (
+  userId,
+  achievementId,
+  achievementLevel,
+) => {
   const today = new Date().toISOString().split("T")[0];
 
   const newAchievement = {
     achievement_id: achievementId,
     person_id: userId,
     achieved_date: today,
+    level: achievementLevel,
   };
-  console.log(newAchievement);
   await createDataToSupabase({
     tableName: "person_achievements",
     dataObject: newAchievement,

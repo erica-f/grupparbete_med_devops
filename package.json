@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "build": "vite build",
     "test": "vitest run --coverage && npm run test:e2e",
     "test:e2e": "vite build && npx playwright test",
     "lint": "eslint src/",
@@ -20,7 +21,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/erica-f/grupparbete_med_devops/issues"
   },

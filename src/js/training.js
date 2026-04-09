@@ -83,8 +83,8 @@ export function populateWorkout(exerciseId, selectedExercise) {
 }
 
 function postLoading() {
-    let exchangeExcerciseBtns = document.querySelectorAll(".exchange-btn");
-    let checkboxForExercises = document.querySelectorAll(".completed");
+  let exchangeExcerciseBtns = document.querySelectorAll(".exchange-btn");
+  let checkboxForExercises = document.querySelectorAll(".completed");
 
     /* find other exercises, offer them as a suggestion to the user and exchange the correct exercise */
     exchangeExcerciseBtns.forEach(item => {
@@ -101,22 +101,25 @@ function postLoading() {
             updateProgress();
         });
     });
+  });
 }
 
 function createAltExercises(selectedExercise) {
-    let exhangeOptions = document.getElementById("exchange-options-" + selectedExercise);
-    let options = `<button class="close-popup">Stäng</button>`;
+  let exhangeOptions = document.getElementById(
+    "exchange-options-" + selectedExercise,
+  );
+  let options = `<button class="close-popup">Stäng</button>`;
 
-    settings.filteredList.forEach(exercise => {
-        options += ` <div class="exchange-option">
+  settings.filteredList.forEach((exercise) => {
+    options += ` <div class="exchange-option">
                     <button class="exchange-to" id="${exercise.id}">
                     <h5>${exercise.name}</h5>
                     <p class="text-muted">${exercise.description}</p>
                     </button>
-                     </div>`
-    });
-    exhangeOptions.style.display = "flex";
-    exhangeOptions.innerHTML = options;
+                     </div>`;
+  });
+  exhangeOptions.style.display = "flex";
+  exhangeOptions.innerHTML = options;
 }
 
 function createEventListeners(selectedExercise) {
@@ -132,6 +135,11 @@ function createEventListeners(selectedExercise) {
     closeBtn.addEventListener("click", function (e) {
         e.currentTarget.parentElement.style.display = "none";
     });
+  });
+  //Close exchange option
+  closeBtn.addEventListener("click", function (e) {
+    e.currentTarget.parentElement.style.display = "none";
+  });
 }
 
 function updateProgress() {
@@ -149,51 +157,60 @@ let completeWorkoutBtn = document.getElementById("complete-workout-btn");
 completeWorkoutBtn.addEventListener("click", completeWorkout);
 
 function completeWorkout() {
-    saveCompletedExercise();
-    displayWorkoutComleted();
-    loopThroughReps(insertToPersonalBest);
-    updateUserLevel();
+  saveCompletedExercise();
+  displayWorkoutComleted();
+  loopThroughReps(insertToPersonalBest);
+  updateUserLevel();
 }
 function saveCompletedExercise() {
-    let exerciseSettings = JSON.parse(localStorage.getItem("exerciseSettings")) || [];
-    let completedExercises = JSON.parse(localStorage.getItem("completedExercises")) || [];
-    const now = new Date();
-    const streakData = {
-        user: exerciseSettings.user,
-        date: now
-    }
-    completedExercises.push(streakData);
-    localStorage.setItem("completedExercises", JSON.stringify(completedExercises));
+  let exerciseSettings =
+    JSON.parse(localStorage.getItem("exerciseSettings")) || [];
+  let completedExercises =
+    JSON.parse(localStorage.getItem("completedExercises")) || [];
+  const now = new Date();
+  const streakData = {
+    user: exerciseSettings.user,
+    date: now,
+  };
+  completedExercises.push(streakData);
+  localStorage.setItem(
+    "completedExercises",
+    JSON.stringify(completedExercises),
+  );
 }
 
 function updateUserLevel() {
-    if (settings.userData.lvl < 9) {
-        updUserLvl(exerciseSettings.user);
-    }
+  if (settings.userData.lvl < 9) {
+    updUserLvl(exerciseSettings.user);
+  }
 }
 function loopThroughReps(updatePersonalBest) {
-    let repInputs = document.querySelectorAll(".rep-input");
-    let exerciseIds = [];
-    let repArray = [];
-    repInputs.forEach(rep => {
-        let value = parseInt(rep.value);
-        let exerciseId = rep.parentElement.id;
-        let repValues = {
-            value: value,
-            exerciseId: exerciseId,
-        }
-        if (exerciseIds.find(x => x == exerciseId)) {
-            let existingValue = repArray.findIndex(x => x.exerciseId == exerciseId);
-            repArray[existingValue].value += value;
-        } else {
-            exerciseIds.push(exerciseId);
-            repArray.push(repValues);
-        }
-    });
-    updatePersonalBest(repArray);
+  let repInputs = document.querySelectorAll(".rep-input");
+  let exerciseIds = [];
+  let repArray = [];
+  repInputs.forEach((rep) => {
+    let value = parseInt(rep.value);
+    let exerciseId = rep.parentElement.id;
+    let repValues = {
+      value: value,
+      exerciseId: exerciseId,
+    };
+    if (exerciseIds.find((x) => x == exerciseId)) {
+      let existingValue = repArray.findIndex((x) => x.exerciseId == exerciseId);
+      repArray[existingValue].value += value;
+    } else {
+      exerciseIds.push(exerciseId);
+      repArray.push(repValues);
+    }
+  });
+  updatePersonalBest(repArray);
 }
 function insertToPersonalBest(repArray) {
-    for (let i = 0; i < repArray.length; i++) {
-        updTotalReps(exerciseSettings.user, repArray[i].exerciseId, repArray[i].value);
-    }
+  for (let i = 0; i < repArray.length; i++) {
+    updTotalReps(
+      exerciseSettings.user,
+      repArray[i].exerciseId,
+      repArray[i].value,
+    );
+  }
 }
