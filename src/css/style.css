@@ -409,15 +409,6 @@ p {
   cursor: not-allowed;
 }
 
-/* Sekundär – grön pill */
-/* .btn--secondary {
-  background-color: transparent;
-  color: var(--color-green);
-  border: 1.5px solid var(--color-green-muted);
-  padding: var(--space-2) var(--space-4);
-  font-size: var(--text-sm);
-} */
-
 .btn--secondary {
   background-color: transparent;
   color: var(--color-green);
@@ -438,24 +429,6 @@ p {
   opacity: 0.65;
 }
 
-/* Tillbaka-knapp */
-/* .btn-back {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--color-text-primary);
-  transition: opacity var(--transition-fast);
-  padding: 0;
-} */
-
-/* .btn-back:hover {
-  opacity: 0.65;
-} */
 
 /* ------------------------------------------------------------
    7. Tabb-växlare (Segment Control)
