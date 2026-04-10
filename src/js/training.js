@@ -1,17 +1,10 @@
 import { updTotalReps, updUserLvl } from "../api/updDataFns.js";
-import { getData } from "./training-data.js";
+import { getData, exerciseSettings } from "./training-data.js";
 import { markExerciseCompleted, displayWorkoutComleted, checkCompletedExercises } from "./training-modular.js";
-let exerciseSettings = await JSON.parse(localStorage.getItem("exerciseSettings"));
 
 let settings = "";
-if (exerciseSettings != null) {
-  settings = await getData(exerciseSettings);
-  if (document.readyState === "loading") {
-    window.addEventListener("DOMContentLoaded", populateWorkout);
-  } else {
-    populateWorkout();
-  }
-} else {
+
+if (exerciseSettings.length == 0) {
   sessionStorage.clear();
   let noDataDiv = document.createElement("div");
   noDataDiv.id = "no-data";
@@ -32,6 +25,13 @@ if (exerciseSettings != null) {
   let progressSection = document.getElementById("progress");
   progressSection.style.display = "none";
   completeSection.style.display = "none";
+} else {
+  settings = await getData();
+  if (document.readyState === "loading") {
+    window.addEventListener("DOMContentLoaded", populateWorkout);
+  } else {
+    populateWorkout();
+  }
 }
 
 export function populateWorkout(exerciseId, selectedExercise) {

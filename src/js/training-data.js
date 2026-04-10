@@ -1,9 +1,11 @@
 import { getExercises, getReps, getUser } from "../api/getDataFns.js";
 import { getRandomExercises, numberOfExercises, filterExerciseList } from "./training-modular.js";
 
+export let exerciseSettings = await JSON.parse(localStorage.getItem("exerciseSettings")) || [];
+
 /* Fetch the exercises and create the cards on page load */
 
-export async function getData(exerciseSettings) {
+export async function getData() {
     let totalNumberOfExercises = numberOfExercises(exerciseSettings.time);
     let userData = await getUser(exerciseSettings.user);
     let exerciseList = Array.from(await getExercises());
