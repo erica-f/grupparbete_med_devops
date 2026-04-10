@@ -1,9 +1,10 @@
+
 #percent-text {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
 }
-
+#no-data,
 #progress,
 #complete-training {
   margin: 1.5rem 0;
@@ -53,7 +54,7 @@
   padding: var(--space-5) var(--space-6);
   gap: var(--space-3);
   box-shadow: var(--shadow-card);
-  margin: var(--space-6);
+  margin: var(--space-6) 0px;
 }
 
 .exercise-header {

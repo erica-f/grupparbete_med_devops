@@ -7,6 +7,7 @@ describe("training mock", () => {
        
         vi.mock(import('../../src/js/training-data.js'), () => {
             return {
+                exerciseSettings: {user: 5, time: 5, gym: false, equipment: true, children: false},
                 getData() {
                     return {
                         "totalNumberOfExercises": 2,
@@ -122,6 +123,7 @@ describe("training mock", () => {
             `;
     });
     test('Document is populated with correct exercises cards and info on load', async () => {
+        // JSON.stringify({ user: 5, time: 5, gym: false, equipment: true, children: false })
         let settings = await getData();
         const { populateWorkout } = await import("../../src/js/training.js");
         populateWorkout();
