@@ -1,41 +1,65 @@
 import { updTotalReps, updUserLvl } from "../api/updDataFns.js";
-import { exerciseSettings, getData } from "./training-data.js";
+import { getData } from "./training-data.js";
 import { markExerciseCompleted, displayWorkoutComleted, checkCompletedExercises } from "./training-modular.js";
+let exerciseSettings = await JSON.parse(localStorage.getItem("exerciseSettings"));
 
-let settings = await getData();
-
+let settings = "";
+if (exerciseSettings != null) {
+  settings = await getData(exerciseSettings);
   if (document.readyState === "loading") {
     window.addEventListener("DOMContentLoaded", populateWorkout);
   } else {
     populateWorkout();
   }
+} else {
+  sessionStorage.clear();
+  let noDataDiv = document.createElement("div");
+  noDataDiv.id = "no-data";
+  let noData = document.createElement("p");
+  noData.textContent = "Vänligen specificera dina önskningar för passet.";
+  noData.className = "exercise-card";
+  let toSettingsBtn = document.createElement("button");
+  toSettingsBtn.textContent = "Ställ in dina preferenser";
+  toSettingsBtn.className = "btn btn--primary";
+  toSettingsBtn.addEventListener("click", function () {
+    window.location.href = "index.html";
+  });
+  document.getElementById("exercises").appendChild(noDataDiv);
+  document.getElementById("no-data").appendChild(noData);
+  document.getElementById("no-data").appendChild(toSettingsBtn);
+
+  let completeSection = document.getElementById("complete-training");
+  let progressSection = document.getElementById("progress");
+  progressSection.style.display = "none";
+  completeSection.style.display = "none";
+}
 
 export function populateWorkout(exerciseId, selectedExercise) {
-    let card = ``;
-    let noOfCards = settings.totalNumberOfExercises;
-    let selectedExercises = settings.selectedExercises;
-    let reps = settings.getRepAmount;
+  let card = ``;
+  let noOfCards = settings.totalNumberOfExercises;
+  let selectedExercises = settings.selectedExercises;
+  let reps = settings.getRepAmount;
 
-    if (exerciseId != null) {
-        let newExercise = settings.filteredList.filter(l => l.id == exerciseId);
-        noOfCards = 1;
-        selectedExercises = newExercise;
-        settings.selectedExercises.splice(selectedExercise - 1, 1, newExercise[0]);
+  if (exerciseId != null) {
+    let newExercise = settings.filteredList.filter(l => l.id == exerciseId);
+    noOfCards = 1;
+    selectedExercises = newExercise;
+    settings.selectedExercises.splice(selectedExercise - 1, 1, newExercise[0]);
+  }
+  sessionStorage.setItem("exercisesList", JSON.stringify(settings.selectedExercises));
+
+  for (let i = 0; i < noOfCards; i++) {
+    let repAmount = reps.find((amount) => amount.exercise_id === selectedExercises[i].id);
+    let timeOrRep = "reps";
+    let currentIndex = i + 1;
+    if (selectedExercises[i].name.toLowerCase().includes("plank")) {
+      timeOrRep = "sek"
     }
-    sessionStorage.setItem("exercisesList", JSON.stringify(settings.selectedExercises));
+    if (exerciseId != null) {
+      currentIndex = selectedExercise;
+    }
 
-    for (let i = 0; i < noOfCards; i++) {
-        let repAmount = reps.find((amount) => amount.exercise_id === selectedExercises[i].id);
-        let timeOrRep = "reps";
-        let currentIndex = i+1;
-        if (selectedExercises[i].name.toLowerCase().includes("plank")) {
-            timeOrRep = "sek"
-        }
-        if(exerciseId != null) {
-            currentIndex = selectedExercise;
-        }
-
-        card += `<div class="exercise exercise-card" id="exercise-card-${currentIndex}">
+    card += `<div class="exercise exercise-card" id="exercise-card-${currentIndex}">
                     <div>
                         <div class="exercise-header">
                             <h4 >${selectedExercises[i].name}</h4>
@@ -63,44 +87,44 @@ export function populateWorkout(exerciseId, selectedExercise) {
                         </div>
                     </div>
                 </div>`
-    }
-    document.getElementById("total-exercises").textContent = settings.totalNumberOfExercises;
-    if (exerciseId != null) {
-        let update = document.getElementById("exercise-card-" + selectedExercise);
-        update.outerHTML = card;
-    } else {
-        document.getElementById("exercises").innerHTML = card;
-    }
-    if (settings.userData.lvl >= 4) {
-        let thirdCounter = Array.from(document.querySelectorAll(".input-3"));
-        thirdCounter.forEach(element => {
-            element.style.display = "inline";
-        });
-    }
-    postLoading();
-    checkCompletedExercises();
-    updateProgress();
+  }
+  document.getElementById("total-exercises").textContent = settings.totalNumberOfExercises;
+  if (exerciseId != null) {
+    let update = document.getElementById("exercise-card-" + selectedExercise);
+    update.outerHTML = card;
+  } else {
+    document.getElementById("exercises").innerHTML = card;
+  }
+  if (settings.userData.lvl >= 4) {
+    let thirdCounter = Array.from(document.querySelectorAll(".input-3"));
+    thirdCounter.forEach(element => {
+      element.style.display = "inline";
+    });
+  }
+  postLoading();
+  checkCompletedExercises();
+  updateProgress();
 }
 
 function postLoading() {
   let exchangeExcerciseBtns = document.querySelectorAll(".exchange-btn");
   let checkboxForExercises = document.querySelectorAll(".completed");
 
-    /* find other exercises, offer them as a suggestion to the user and exchange the correct exercise */
-    exchangeExcerciseBtns.forEach(item => {
-        item.addEventListener("click", function (e) {
-            let selectedExercise = e.currentTarget.id.charAt(e.currentTarget.id.length - 1);
-            createAltExercises(selectedExercise);
-            createEventListeners(selectedExercise);
-        });
+  /* find other exercises, offer them as a suggestion to the user and exchange the correct exercise */
+  exchangeExcerciseBtns.forEach(item => {
+    item.addEventListener("click", function (e) {
+      let selectedExercise = e.currentTarget.id.charAt(e.currentTarget.id.length - 1);
+      createAltExercises(selectedExercise);
+      createEventListeners(selectedExercise);
     });
-    /* Update the progress when an exercise is marked as complete / unchecked */
-    checkboxForExercises.forEach(item => {
-        item.addEventListener("click", function (e) {
-            markExerciseCompleted(e.currentTarget);
-            updateProgress();
-        });
+  });
+  /* Update the progress when an exercise is marked as complete / unchecked */
+  checkboxForExercises.forEach(item => {
+    item.addEventListener("click", function (e) {
+      markExerciseCompleted(e.currentTarget);
+      updateProgress();
     });
+  });
 }
 
 function createAltExercises(selectedExercise) {
@@ -122,29 +146,29 @@ function createAltExercises(selectedExercise) {
 }
 
 function createEventListeners(selectedExercise) {
-    let selectExerciseBtn = document.querySelectorAll(".exchange-to");
-    let closeBtn = document.querySelector(".close-popup");
-    //Find the replacement exercise 
-    selectExerciseBtn.forEach(item => {
-        item.addEventListener("click", function (e) {
-            populateWorkout(e.currentTarget.id, selectedExercise);
-        });
+  let selectExerciseBtn = document.querySelectorAll(".exchange-to");
+  let closeBtn = document.querySelector(".close-popup");
+  //Find the replacement exercise 
+  selectExerciseBtn.forEach(item => {
+    item.addEventListener("click", function (e) {
+      populateWorkout(e.currentTarget.id, selectedExercise);
     });
-    //Close exchange option
-    closeBtn.addEventListener("click", function (e) {
-        e.currentTarget.parentElement.style.display = "none";
-    });
+  });
+  //Close exchange option
+  closeBtn.addEventListener("click", function (e) {
+    e.currentTarget.parentElement.style.display = "none";
+  });
 }
 
 function updateProgress() {
-    let completedExercises = document.querySelectorAll(".completed:checked");
-    let progressBar = document.getElementById("progress-done");
-    let progressText = document.getElementById("progress-percent");
-    let exercisesCompletedText = document.getElementById("exercises-completed");
-    let percentDone = Math.round((completedExercises.length / settings.totalNumberOfExercises) * 100);
-    progressBar.style.width = percentDone + "%";
-    progressText.textContent = percentDone + "%";
-    exercisesCompletedText.textContent = completedExercises.length;
+  let completedExercises = document.querySelectorAll(".completed:checked");
+  let progressBar = document.getElementById("progress-done");
+  let progressText = document.getElementById("progress-percent");
+  let exercisesCompletedText = document.getElementById("exercises-completed");
+  let percentDone = Math.round((completedExercises.length / settings.totalNumberOfExercises) * 100);
+  progressBar.style.width = percentDone + "%";
+  progressText.textContent = percentDone + "%";
+  exercisesCompletedText.textContent = completedExercises.length;
 }
 /* On completing workout, save to localStorage and show "congratulations" message */
 let completeWorkoutBtn = document.getElementById("complete-workout-btn");
